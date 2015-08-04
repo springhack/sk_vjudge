@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 21:11:47
+        Last modified: 2015-08-04 21:14:29
         Filename: index.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -32,8 +32,9 @@
 			for ($i=0;$i<count($list);++$i)
 				echo "<tr><td width='100'>".$list[$i]['id']."</td><td width='500'><a href='view.php?id=".$list[$i]['id']."'>".$list[$i]['title']."</a></td></tr>";
 			echo "</table>";
-		?>
+		?><br /><br />
 		<script language="javascript" src="Widget/pageSwitcher/pageSwitcher.js"></script>
+		<br /><br />
         </center>
     </body>
 </html>
