@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 13:36:34
+        Last modified: 2015-08-04 21:03:34
         Filename: status.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -85,6 +85,7 @@
 			?>
         </table>
         <br /><br />
+		<script language="javascript" src="Widget/pageSwitcher/pageSwitcher.js"></script>
         </center>
     </body>
 </html>
