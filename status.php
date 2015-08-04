@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 21:03:34
+        Last modified: 2015-08-04 21:09:42
         Filename: status.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -45,10 +45,11 @@
                 </td>
             </tr>
             <?php
+				$start = isset($_GET['page'])?(intval($_GET['page'])-1)*100:0;
             	require_once('api.php');
 				require_once('classes/Record.php');
 				$db = new MySQL();
-				$arr = $db->from('Record')->limit(100, 0)->order('DESC', 'time')->select('id')->fetch_all();
+				$arr = $db->from('Record')->limit(100, $start)->order('DESC', 'time')->select('id')->fetch_all();
 				for ($i=0;$i<count($arr);++$i)
 				{
 					$pro = new Record($arr[$i]['id']);
