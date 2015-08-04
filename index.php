@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 21:06:20
+        Last modified: 2015-08-04 21:11:47
         Filename: index.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -27,7 +27,7 @@
 						'oj' => 'text'
 					))->create("Problem");
 			}
-			$list = $db->from("Problem")->limit(100, $srart)->select()->fetch_all();
+			$list = $db->from("Problem")->limit(100, $start)->select()->fetch_all();
 			echo "<table border='1'><tr><td width='100'>Problem ID</td><td width='500'>Problem Title</td></tr>";
 			for ($i=0;$i<count($list);++$i)
 				echo "<tr><td width='100'>".$list[$i]['id']."</td><td width='500'><a href='view.php?id=".$list[$i]['id']."'>".$list[$i]['title']."</a></td></tr>";
