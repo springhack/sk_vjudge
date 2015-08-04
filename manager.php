@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-08-04 17:31:10
+        Filename: manager.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	require_once("api.php");
 	if (!$app->user->isLogin())
