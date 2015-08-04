@@ -14,6 +14,9 @@
 		</style>
     </head>
     <body>
+    	<center>
+        <?php require_once("header.php"); ?>
+        <h1>Problem Status List</h1>
     	<table border="1">
         	<tr>
             	<td>
@@ -23,7 +26,7 @@
                 	User
                 </td>
                 <td>
-                	Problem
+                	Problem ID
                 </td>
                 <td>
                 	Result
@@ -59,7 +62,7 @@
                 	<?php echo $res['user']; ?>
                 </td>
                 <td>
-                	<?php echo $res['oj'].' - '.$res['tid']; ?>
+                	<?php echo $res['oid']; ?>
                 </td>
                 <td>
                 	<?php echo $res['result']; ?>
@@ -81,5 +84,7 @@
 				}
 			?>
         </table>
+        <br /><br />
+        </center>
     </body>
 </html>

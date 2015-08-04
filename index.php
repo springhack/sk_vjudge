@@ -11,11 +11,27 @@
         <title>Problem List</title>
     </head>
     <body>
+    	<center>
+        	<?php require_once("header.php"); ?>
+        	<h2>Problems List</h2>
     	<?php
 			require_once("api.php");
-			require_once("classes/Problem.php");
-			for ($i=1000;$i<1100;++$i)
-				echo "<a href='view.php?id=".$i."'>POJ - ".$i."</a><br />";
+			$db = new MySQL();
+			if ($db->query("SHOW TABLES LIKE 'Problem'")->num_rows() != 1)
+			{
+				$db->struct(array(
+						'id' => 'text',
+						'pid' => 'text',
+						'title' => 'text',
+						'oj' => 'text'
+					))->create("Problem");
+			}
+			$list = $db->from("Problem")->select()->fetch_all();
+			echo "<table border='1'><tr><td width='100'>Problem ID</td><td width='500'>Problem Title</td></tr>";
+			for ($i=0;$i<count($list);++$i)
+				echo "<tr><td width='100'>".$list[$i]['id']."</td><td width='500'><a href='view.php?id=".$list[$i]['id']."'>".$list[$i]['title']."</a></td></tr>";
+			echo "</table>";
 		?>
+        </center>
     </body>
 </html>

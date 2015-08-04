@@ -10,16 +10,22 @@
 		
 		private $db = NULL;
 		private $res = "";
+		private $id = "";
 		
 		public function POJ_Record($id)
 		{
+			$this->id = $id;
 			$this->db = new MySQL();
 			$this->res = $this->db->from("Record")->where("`id` = '".$id."'")->select()->fetch_one();
 		}
 		
 		public function getInfo()
 		{
-			
+			if ($this->res['result'] != 'N/A'
+				&& $this->res['result'] != 'Running & Judging'
+				&& $this->res['result'] != 'Waiting'
+				&& $this->res['result'] != 'Compiling')
+			return $this->res;
 			require_once(dirname(__FILE__)."/HTMLParser.php");
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");
@@ -50,6 +56,12 @@
 			$th->loadHTML($th->startString('<td><b>Result:</b> '));
 			$th->loadHTML($th->startString('<font '));
 			$this->res['result'] = $th->innerHTML('>', '</font>');
+			$this->db->set(array(
+					'memory' => $this->res['memory'],
+					'long' => $this->res['long'],
+					'lang' => $this->res['lang'],
+					'result' => $this->res['result']
+				))->where("`id` = '".$this->id."'")->update("Record");
 			return $this->res;
 		}
 		

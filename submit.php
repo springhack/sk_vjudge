@@ -6,8 +6,12 @@
 **/ ?>
 <?php
 	require_once("api.php");
+	if (!$app->user->isLogin())
+		die('<center><a href=\'admin/status.php?action=login&url=../index.php\'>Please login or register first!</a></center>');
 	require_once("classes/Problem.php");
-	$pro = new Problem($_GET['id'], "POJ");
+	$db = new MySQL();
+	$info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
+	$pro = new Problem($info['pid'], $info['oj']);
 	if (isset($_POST['lang']) && isset($_POST['code']))
 	{
 		$pro->submitCode($_POST['lang'], $_POST['code']);
@@ -24,21 +28,47 @@
     	<script language="javascript">
 			<?php echo $pro->getEncodeScript(); ?>
 		</script>
-    	<h2>POJ:<?php echo $_GET['id']; ?></h2>
-    	<form action="submit.php?id=<?php echo $_GET['id']; ?>" method="post" onsubmit="return encodeSource()">
-        	Language:
-            <select name="lang">
-            	<option value=0 selected>G++</option>
-                <option value=1>GCC</option>
-                <option value=2>Java</option>
-                <option value=3>Pascal</option>
-                <option value=4>C++</option>
-                <option value=5>C</option>
-                <option value=6>Fortran</option>
-            </select><br />Code:<br />
-            <textarea name="code" rows="30" cols="100" id="code"></textarea>
-            <input type="hidden" name="rid" id="rid" value="" />
-            <input name="submit" type="submit" value="Submit" />
+        <script language="javascript" type="text/javascript" src="Widget/codeEditor/edit_area_full.js"></script>
+        <script language="javascript">
+			editAreaLoader.init({
+				id: "code"	// id of the textarea to transform		
+				,start_highlight: true	// if start with highlight
+				,allow_resize: "both"
+				,allow_toggle: true
+				,word_wrap: true
+				,language: "en"
+				,syntax: "html"	
+			});
+		</script>
+        <center>
+        <?php require_once("header.php"); ?>
+        <h1>Submit Code</h1>
+        <form action="submit.php?id=<?php echo $_GET['id']; ?>" method="post" onsubmit="return encodeSource()">
+        <table border="1">
+        	<tr>
+        		<td>
+    				<h2>Problem ID: <?php echo $_GET['id']; ?></h2>
+                        Language:
+                        <select name="lang">
+                            <option value=0 selected>G++</option>
+                            <option value=1>GCC</option>
+                            <option value=2>Java</option>
+                            <option value=3>Pascal</option>
+                            <option value=4>C++</option>
+                            <option value=5>C</option>
+                            <option value=6>Fortran</option>
+                        </select>&nbsp;&nbsp;<input name="submit" type="submit" value="Submit" /><br />Code:<br />
+            	</td>
+            </tr>
+            <tr>
+            	<td>
+                        <textarea name="code" rows="26" cols="130" id="code"></textarea>
+                        <input type="hidden" name="rid" id="rid" value="" />
+                </td>
+            </tr>
+        </table>
         </form>
+        <br /><br />
+        </center>
     </body>
 </html>

@@ -11,20 +11,36 @@
         <title>View Problem</title>
     </head>
     <body>
-    	<a href="submit.php?id=<?php echo $_GET['id']; ?>">Submit</a>
-    	<?php
-			require_once("api.php");
-			require_once("classes/Problem.php");
-        	$pro = new Problem($_GET['id'], "POJ");
-			$pro_info = $pro->getInfo();
-			foreach ($pro_info as $key => $val)
-			{
-				echo "<h2>".$key."</h2>";
-				if (strstr($key, "sample_"))
-					echo "<pre>".$val."</pre><br /><br />";
-				else
-					echo $val."<br /><br />";
-			}
-		?>
+    	<center>
+        <?php require_once("header.php"); ?>
+        <h1>View Problem</h1>
+        <table border="1">
+        	<tr>
+            	<td width="200">
+            		<h2>Submit Code</h2>
+            	</td>
+                <td width="600">
+                	<a href="submit.php?id=<?php echo $_GET['id']; ?>">Submit</a>
+                </td>
+            </tr>
+            <?php
+                require_once("api.php");
+                require_once("classes/Problem.php");
+                $db = new MySQL();
+                $info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
+                $pro = new Problem($info['pid'], $info['oj']);
+                $pro_info = $pro->getInfo();
+                foreach ($pro_info as $key => $val)
+                {
+                    echo "<tr><td width='200'><h2>".$key."</h2></td><td width='800'>";
+                    if (strstr($key, "sample_"))
+                        echo "<pre>".$val."</pre></td></tr>";
+                    else
+                        echo $val."</td></tr>";
+                }
+            ?>
+            </table>
+            <br /><br />
+        </center>
     </body>
 </html>

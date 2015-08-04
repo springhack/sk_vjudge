@@ -17,10 +17,15 @@
 			{
 				$this->db->struct(array(
 						'id' => 'text',
+						'oid' => 'text',
 						'rid' => 'text',
 						'tid' => 'text',
 						'user' => 'text',
 						'time' => 'text',
+						'memory' => 'text',
+						'long' => 'text',
+						'lang' => 'text',
+						'result' => 'text',
 						'oj' => 'text',
 						'oj_u' => 'text',
 						'oj_p' => 'text',

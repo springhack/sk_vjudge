@@ -78,10 +78,15 @@
 			if ($run_id != "")
 				$ret = $this->db->value(array(
 						'id' => $rid,
+						'oid' => $_GET['id'],
 						'tid' => $id,
 						'rid' => $run_id,
-						'user' => 'springhack',
+						'user' => $_SESSION['user'],
 						'time' => time(),
+						'memory' => 'N/A',
+						'long' => 'N/A',
+						'lang' => 'N/A',
+						'result' => 'N/A',
 						'oj' => 'POJ',
 						'oj_u' => $user,
 						'oj_p' => $pass,

@@ -43,6 +43,9 @@
             </div>
             <div id="right">
                 <div id="left">
+                	<div class="item_parent selected" onclick="menu.open('../manager.php')">
+                        <img src="img/dash.svg" />添加题目
+                    </div>
                 	<div class="item_parent selected" onclick="menu.open('main.php')">
                         <img src="img/dash.svg" />监控面板
                     </div>
