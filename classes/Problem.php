@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-08-04 13:38:04
+        Filename: /home/springhack/sk_vjudge/classes/Problem.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 
 	class Problem {

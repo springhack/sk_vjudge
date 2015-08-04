@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-08-04 13:38:20
+        Filename: /home/springhack/sk_vjudge/classes/POJ_Problem.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 
 	require_once(dirname(__FILE__)."/DataPoster.php");

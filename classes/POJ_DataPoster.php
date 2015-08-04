@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-08-04 13:23:12
+        Filename: POJ_DataPoster.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 
 	class POJ_DataPoster {

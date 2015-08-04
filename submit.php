@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-08-04 13:36:43
+        Filename: submit.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	require_once("api.php");
 	require_once("classes/Problem.php");
