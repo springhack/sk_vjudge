@@ -1,4 +1,5 @@
 <?php
+	date_default_timezone_set("PRC");
 	require_once(dirname(__FILE__)."/App.class.php");
 	$app = new App();
 	$app->page = new Page();

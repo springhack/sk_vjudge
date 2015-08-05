@@ -71,9 +71,9 @@
 				);
 			return $this;
 		}
-		public function delete($delete = "*")
+		public function delete($delete = "")
 		{
-			$this->query_result = mysql_query("DELETE ".$delete." ".implode(" ", $this->query_command), $this->sql);
+			$this->query_result = mysql_query("DELETE ".implode(" ", $this->query_command), $this->sql);
 			$this->query_command = array(
 					"from" => "",
 					"where" => "",
