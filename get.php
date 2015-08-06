@@ -5,5 +5,5 @@
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
-	echo file_get_contents(str_replace("/vj", "http://poj.org", $_SERVER["REQUEST_URI"]));
+	echo file_get_contents("http://poj.org".$_SERVER["REQUEST_URI"]);
 ?>

@@ -76,12 +76,15 @@
 				}
 				for ($i=0;$i<count($list)-1;++$i)
 					for ($j=$i+1;$j<count($list);++$j)
+					{
 						if ($list[$i]['deal'] < $list[$j]['deal'])
 						{
 							$tmp = $list[$i];
 							$list[$i] = $list[$j];
 							$list[$j] = $tmp;
-						} else {
+						}
+						if ($list[$i]['deal'] == $list[$j]['deal'])
+						{
 							if ($list[$i]['time'] != 0 || $list[$j]['time'] != 0)
 								if (($list[$i]['time'] > $list[$j]['time']) || ($list[$i]['time'] == 0))
 								{
@@ -90,6 +93,7 @@
 									$list[$j] = $tmp;
 								}
 						}
+					}
 				$app->setting->set("lastArray", serialize($list));
 				$app->setting->set("lastCache", time());
 			} else {
