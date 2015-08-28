@@ -5,5 +5,20 @@
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
-	echo file_get_contents("http://poj.org".$_SERVER["REQUEST_URI"]);
+	phpinfo();
 ?>
+ 	require_once("api.php");
+	require_once("classes/Problem.php");
+	$db = new MySQL();
+	$info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
+	$prefix = "";
+	switch ($info['oj'])
+	{
+		case "POJ":
+			$prefix = "http://poj.org";
+		break;
+		default:
+		break;
+	}
+	echo file_get_contents($prefix.$_SERVER["REQUEST_URI"]);
+
