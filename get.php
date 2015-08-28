@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 13:35:24
+        Last modified: 2015-08-28 09:33:49
         Filename: get.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -10,7 +10,7 @@
 	$id = exlplode("id=", $_SERVER["HTTP_REFERER"]);
 	$id = isset($id[1])?$id[1]:0;
 	$db = new MySQL();
-	$info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
+	$info = $db->from("Problem")->where("`id` = '".$id."'")->select()->fetch_one();
 	$prefix = "";
 	switch ($info['oj'])
 	{
