@@ -1,19 +1,16 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-28 09:41:01
+        Last modified: 2015-08-28 09:49:49
         Filename: get.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
  	require_once("api.php");
 	require_once("classes/Problem.php");
-	$id = exlplode("id=", $_SERVER["HTTP_REFERER"]);
-	print_r($id);
+	$id = explode("id=", $_SERVER["HTTP_REFERER"]);
 	$id = isset($id[1])?$id[1]:0;
-	echo "id:".$id."\n";
 	$db = new MySQL();
 	$info = $db->from("Problem")->where("`id` = '".$id."'")->select()->fetch_one();
-	print_r($info);
 	$prefix = "";
 	switch ($info['oj'])
 	{
