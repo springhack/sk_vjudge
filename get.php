@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-28 09:35:19
+        Last modified: 2015-08-28 09:41:01
         Filename: get.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -8,7 +8,7 @@
  	require_once("api.php");
 	require_once("classes/Problem.php");
 	$id = exlplode("id=", $_SERVER["HTTP_REFERER"]);
-	echo "id:".$id."\n";
+	print_r($id);
 	$id = isset($id[1])?$id[1]:0;
 	echo "id:".$id."\n";
 	$db = new MySQL();
