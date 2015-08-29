@@ -28,8 +28,8 @@
 			$cookie_file = tempnam("./cookie", "cookie");
 			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
 			$post_fields = "username=".$user."&userpass=".$pass."&login=Sign%20In";
-			$rid = $_POST['rid'];
-			$this->rid = $_POST['rid'];
+			$rid = uniqid();
+			$this->rid = uniqid();
 			$this->pid = $id;
 			$this->lang = $lang;
 			$this->user = $user;
@@ -43,6 +43,7 @@
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $post_fields);
 			$this->data = curl_exec($curl);
+			echo $this->data;
 			curl_close($curl);
 			
 			//Submit
