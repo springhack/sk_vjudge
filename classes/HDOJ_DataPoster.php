@@ -44,13 +44,6 @@
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $post_fields);
 			$this->data = curl_exec($curl);
 			
-			//debug
-			$curl = curl_init("http://acm.hdu.edu.cn/viewcode.php?rid=14684875"); 
-    		curl_setopt($curl, CURLOPT_HEADER, 0);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
-			echo curl_exec($curl);
-			
 			//Submit
 			$hint_code = /*"//<ID>".$rid."</ID>\n".*/$code;
 			/**$post_fields = http_build_query(array(
@@ -59,8 +52,7 @@
 					'encoded' => 1,
 					'source' => base64_encode($hint_code)
 				));**/
-			$post_fields = 'check=0&problemid='.$id.'&language='.$lang.'&source='.urlencode($hint_code);
-			//print_r(base64_encode($code));
+			$post_fields = 'check=0&problemid='.$id.'&language='.$lang.'&usercode='.urlencode($hint_code);
 			$curl = curl_init("http://acm.hdu.edu.cn/submit.php?action=submit"); 
     		curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -130,7 +122,7 @@
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");
 			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
-			$post_fields = "username=".$user."&userpass=".$pass."&login=Sign%20In";
+			$post_fields = "username=".$user."&userpass=".$pass."&login=Sign In";
 			
 			//Login
 			$curl = curl_init($login_url); 
