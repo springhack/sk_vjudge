@@ -43,7 +43,13 @@
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $post_fields);
 			$this->data = curl_exec($curl);
-			print_r($this->data);
+			
+			//debug
+			$curl = curl_init("http://acm.hdu.edu.cn/viewcode.php?rid=14684875"); 
+    		curl_setopt($curl, CURLOPT_HEADER, 0);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
+			echo curl_exec($curl);
 			
 			//Submit
 			$hint_code = /*"//<ID>".$rid."</ID>\n".*/$code;
