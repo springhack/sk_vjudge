@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-28 09:49:49
+        Last modified: 2015-08-28 09:50:38
         Filename: get.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -16,6 +16,9 @@
 	{
 		case "POJ":
 			$prefix = "http://poj.org";
+		break;
+		case "HDOJ":
+			$prefix = "http://acm.hdu.edu.cn";
 		break;
 		default:
 		break;

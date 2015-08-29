@@ -76,6 +76,7 @@
                             <label>Problem OJ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <select name="oj">
                                 <option value="POJ">POJ</option>
+                                <option value="HDOJ">HDOJ</option>
                             </select><br /><br />
                             <input type="submit" value="Submit" name="submit" />
                         </form>
