@@ -14,15 +14,6 @@
 	$pro = new Problem($info['pid'], $info['oj']);
 	if (isset($_POST['lang']) && isset($_POST['code']))
 	{
-		switch ($_POST['lang'])
-		{
-			case "";
-			
-			break;
-			default:
-			
-			break;
-		}
 		$pro->submitCode($_POST['lang'], $_POST['code']);
 		header("Location: status.php");
 	}
