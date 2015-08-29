@@ -14,8 +14,17 @@
 	$pro = new Problem($info['pid'], $info['oj']);
 	if (isset($_POST['lang']) && isset($_POST['code']))
 	{
+		switch ($_POST['lang'])
+		{
+			case "";
+			
+			break;
+			default:
+			
+			break;
+		}
 		$pro->submitCode($_POST['lang'], $_POST['code']);
-		//header("Location: status.php");
+		header("Location: status.php");
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -50,13 +59,9 @@
     				<h2>Problem ID: <?php echo $_GET['id']; ?></h2>
                         Language:
                         <select name="lang">
-                            <option value=0 selected>G++</option>
-                            <option value=1>GCC</option>
-                            <option value=2>Java</option>
-                            <option value=3>Pascal</option>
-                            <option value=4>C++</option>
-                            <option value=5>C</option>
-                            <option value=6>Fortran</option>
+                            <?php
+                            	echo file_get_contents(dirname(__FILE__)."/language/".$info['oj'].".txt");
+							?>
                         </select>&nbsp;&nbsp;<input name="submit" type="submit" value="Submit" /><br />Code:<br />
             	</td>
             </tr>

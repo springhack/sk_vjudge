@@ -23,8 +23,9 @@
 		{
 			if ($this->res['result'] != 'N/A'
 				&& $this->res['result'] != 'Running & Judging'
-				&& $this->res['result'] != 'Waiting'
-				&& $this->res['result'] != 'Compiling')
+				&& $this->res['result'] != 'Queuing'
+				&& $this->res['result'] != 'Compiling'
+				&& $this->res['result'] != 'Pending')
 			return $this->res;
 			require_once(dirname(__FILE__)."/HTMLParser.php");
 			//Infomation
