@@ -19,6 +19,8 @@
 		private $pass = "";
 		private $rid = "";
 		
+		private $cookie_file = "";
+		
 		public function HDOJ_DataPoster($user = "skvj01", $pass = "forskvj", $id = "1000", $lang = "0", $code = "")
 		{
 			//MySQL
@@ -26,6 +28,7 @@
 
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");
+			$this->cookie_file = $cookie_file;
 			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
 			$post_fields = "username=".$user."&userpass=".$pass."&login=Sign In";
 			$rid = uniqid();
@@ -63,7 +66,7 @@
 			curl_close($curl);
 			
 			
-			@unlink($cookie_file);
+			//@unlink($cookie_file);
 			
 			//Record Information
 			$this->info = array(
@@ -120,11 +123,14 @@
 		public function getIdFromSource($RunID)
 		{
 			//Infomation
+			/**
 			$cookie_file = tempnam("./cookie", "cookie");
 			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
 			$post_fields = "username=".$user."&userpass=".$pass."&login=Sign In";
+			**/
 			
 			//Login
+			/**
 			$curl = curl_init($login_url); 
     		curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -132,16 +138,22 @@
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $post_fields);
 			$this->data = curl_exec($curl);
+			**/
 			
 			//Get Source
-			echo "http://acm.hdu.edu.cn/viewcode.php?rid=".$RunID;
 			$curl = curl_init("http://acm.hdu.edu.cn/viewcode.php?rid=".$RunID); 
     		curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
+			curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookie_file);
 			$src = curl_exec($curl);
-			echo $src;
-			@unlink($cookie_file);
+			
+			//Logout
+			$curl = curl_init('http://acm.hdu.edu.cn/userloginex.php?action=logout'); 
+    		curl_setopt($curl, CURLOPT_HEADER, 0);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookie_file);
+			@unlink($this->cookie_file);
+			
 			$th = new HTMLParser();
 			$th->loadHTML($src);
 			return $th->innerHTML('//&lt;ID&gt;', '&lt;/ID&gt;');
