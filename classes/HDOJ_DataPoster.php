@@ -134,6 +134,7 @@
 			$this->data = curl_exec($curl);
 			
 			//Get Source
+			echo "http://acm.hdu.edu.cn/viewcode.php?rid=".$RunID;
 			$curl = curl_init("http://acm.hdu.edu.cn/viewcode.php?rid=".$RunID); 
     		curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
