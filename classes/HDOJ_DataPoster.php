@@ -45,7 +45,7 @@
 			$this->data = curl_exec($curl);
 			
 			//Submit
-			$hint_code = /*"//<ID>".$rid."</ID>\n".*/$code;
+			$hint_code = "//<ID>".$rid."</ID>\n".$code;
 			/**$post_fields = http_build_query(array(
 					'problem_id' => $id,
 					'language' => $lang,
@@ -101,14 +101,14 @@
 		private function getRunID()
 		{
 			require_once(dirname(__FILE__)."/HTMLParser.php");
-			$this->html = new HTMLParser("http://poj.org/status?problem_id=".$this->pid."&user_id=".$this->user."&result=&language=".$this->lang);
-			$this->html->loadHTML($this->html->innerHTML('<td width=17%>Submit Time</td></tr>'."\n", "\n".'</table>'));
+			$this->html = new HTMLParser("http://acm.hdu.edu.cn/status.php?pid=".$this->pid."&user=".$this->user."&lang=".$this->lang);
+			$this->html->loadHTML($this->html->innerHTML('Output Limit Exceeded</option></select></span>', '<< First Page'));
 			//echo "LLL:".$this->rid."\n\n";
-			while ($this->html->innerHTML('<tr align=center><td>', '</td>') != "")
+			while ($this->html->innerHTML('align=center ><td height=22px>', '</td>') != "")
 			{
-				$r_id = $this->html->innerHTML('<tr align=center><td>', '</td>');
+				$r_id = $this->html->innerHTML('align=center ><td height=22px>', '</td>');
 				//echo "RID:".$r_id."\n";
-				$this->html->loadHTML($this->html->startString('<tr align=center><td>'));
+				$this->html->loadHTML($this->html->startString('align=center ><td height=22px>'));
 				$t_id = $this->getIdFromSource($r_id);
 				//echo "LID:".$t_id."\n\n";
 				if ($t_id == $this->rid)
@@ -134,7 +134,7 @@
 			$this->data = curl_exec($curl);
 			
 			//Get Source
-			$curl = curl_init("http://poj.org/showsource?solution_id=".$RunID); 
+			$curl = curl_init("http://acm.hdu.edu.cn/viewcode.php?rid=".$RunID); 
     		curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
@@ -142,7 +142,8 @@
 			@unlink($cookie_file);
 			$th = new HTMLParser();
 			$th->loadHTML($src);
-			return $th->innerHTML('//&lt;ID&gt;', '&lt;/ID&gt;');
+			//return $th->innerHTML('//&lt;ID&gt;', '&lt;/ID&gt;');
+			return 0000000000;
 		}
 		
 	}
