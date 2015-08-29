@@ -19,19 +19,23 @@
 			$html = new HTMLParser("http://acm.hdu.edu.cn/showproblem.php?pid=".$id);
 			$html->optHTMLLink();
 			$pro_info = array(
-					'title' => substr($html->innerHTML("<h1 style='color:#1A5CC8'>", '</h1>'), 8)
+					'title' => substr($html->innerHTML("<h1 style='color:#1A5CC8'>", '</h1>'), $sub_start)
 				);
-			$pro_info['time'] = substr($html->innerHTML('<span style=\'font-family:Arial;font-size:12px;font-weight:bold;color:green\'>Time Limit: ', ' MS (Java/Others)'), 8);
-			$pro_info['memory'] = substr($html->innerHTML('MS (Java/Others)&nbsp;&nbsp;&nbsp;&nbsp;Memory Limit: ', ' K (Java/Others)<br>'), 8);
-			$pro_info['submissions'] = substr($html->innerHTML('Total Submission(s): ', '&nbsp;&nbsp;&nbsp;&nbsp;Accepted'), 8);
-			$pro_info['accepted'] = substr($html->innerHTML('Accepted Submission(s): ', '<br></span></b></font>'), 8);
-			$pro_info['description'] = substr($html->innerHTML('<div class=panel_title align=left>Problem Description</div> <div class=panel_content>', '</div><div class=panel_bottom>'), 8);
-			$pro_info['input'] = substr($html->innerHTML('<div class=panel_title align=left>Input</div> <div class=panel_content>', '</div><div class=panel_bottom>'), 8);
-			$pro_info['output'] = substr($html->innerHTML('<div class=panel_title align=left>Output</div> <div class=panel_content>', '</div><div class=panel_bottom>'), 8);
-			$pro_info['sample_input'] = substr($html->innerHTML('<div class=panel_title align=left>Sample Input</div><div class=panel_content><pre>', '</pre>'), 8);
-			$pro_info['sample_output'] = substr($html->innerHTML('<div class=panel_title align=left>Sample Output</div><div class=panel_content><pre>', '</pre>'), 8);
+			
+			//Just a hack for OS X
+			$sub_start = 0;
+			
+			$pro_info['time'] = substr($html->innerHTML('<span style=\'font-family:Arial;font-size:12px;font-weight:bold;color:green\'>Time Limit: ', ' MS (Java/Others)'), $sub_start);
+			$pro_info['memory'] = substr($html->innerHTML('MS (Java/Others)&nbsp;&nbsp;&nbsp;&nbsp;Memory Limit: ', ' K (Java/Others)<br>'), $sub_start);
+			$pro_info['submissions'] = substr($html->innerHTML('Total Submission(s): ', '&nbsp;&nbsp;&nbsp;&nbsp;Accepted'), $sub_start);
+			$pro_info['accepted'] = substr($html->innerHTML('Accepted Submission(s): ', '<br></span></b></font>'), $sub_start);
+			$pro_info['description'] = substr($html->innerHTML('<div class=panel_title align=left>Problem Description</div> <div class=panel_content>', '</div><div class=panel_bottom>'), $sub_start);
+			$pro_info['input'] = substr($html->innerHTML('<div class=panel_title align=left>Input</div> <div class=panel_content>', '</div><div class=panel_bottom>'), $sub_start);
+			$pro_info['output'] = substr($html->innerHTML('<div class=panel_title align=left>Output</div> <div class=panel_content>', '</div><div class=panel_bottom>'), $sub_start);
+			$pro_info['sample_input'] = substr($html->innerHTML('<div class=panel_title align=left>Sample Input</div><div class=panel_content><pre>', '</pre>'), $sub_start);
+			$pro_info['sample_output'] = substr($html->innerHTML('<div class=panel_title align=left>Sample Output</div><div class=panel_content><pre>', '</pre>'), $sub_start);
 			$pro_info['hint'] = "N/A";
-			$pro_info['source'] = substr($html->innerHTML('<div class=panel_title align=left>Author</div> <div class=panel_content>', '</div><div class=panel_bottom>'), 8);
+			$pro_info['source'] = substr($html->innerHTML('<div class=panel_title align=left>Author</div> <div class=panel_content>', '</div><div class=panel_bottom>'), $sub_start);
 			$this->pro_info = $pro_info;
 		}
 		
