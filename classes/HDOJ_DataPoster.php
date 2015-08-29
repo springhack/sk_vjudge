@@ -88,7 +88,7 @@
 						'long' => 'N/A',
 						'lang' => 'N/A',
 						'result' => 'N/A',
-						'oj' => 'POJ',
+						'oj' => 'HDOJ',
 						'oj_u' => $user,
 						'oj_p' => $pass,
 						'code' => $code
