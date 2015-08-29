@@ -29,8 +29,8 @@
 			require_once(dirname(__FILE__)."/HTMLParser.php");
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");
-			$login_url = "http://poj.org/login";
-			$post_fields = "user_id1=".$this->res['oj_u']."&password1=".$this->res['oj_p']."&url=/";
+			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
+			$post_fields = "username=".$this->res['oj_u']."&userpass=".$this->res['oj_p']."&login=Sign In";
 			
 			//Login
 			$curl = curl_init($login_url); 
@@ -42,20 +42,27 @@
 			$this->data = curl_exec($curl);
 			
 			//Get Source
-			$curl = curl_init("http://poj.org/showsource?solution_id=".$this->res['rid']); 
+			$curl = curl_init("http://acm.hdu.edu.cn/viewcode.php?rid=".$this->res['rid']); 
     		curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
 			$src = curl_exec($curl);
+			
+			//Logout
+			$curl = curl_init('http://acm.hdu.edu.cn/userloginex.php?action=logout'); 
+    		curl_setopt($curl, CURLOPT_HEADER, 0);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
+			curl_exec($curl);
+			
 			@unlink($cookie_file);
 			$th = new HTMLParser();
 			$th->loadHTML($src);
-			$this->res['memory'] = $th->innerHTML('<td><b>Memory:</b> ', '</td>');
-			$this->res['long'] = $th->innerHTML('<td><b>Time:</b> ', '</td>');
-			$this->res['lang'] = $th->innerHTML('<td><b>Language:</b> ', '</td>');
-			$th->loadHTML($th->startString('<td><b>Result:</b> '));
-			$th->loadHTML($th->startString('<font '));
+			$th->loadHTML($th->startString('Judge Status : '));
 			$this->res['result'] = $th->innerHTML('>', '</font>');
+			$this->res['memory'] = "N/A";//$th->innerHTML('<td><b>Memory:</b> ', '</td>');
+			$this->res['long'] = "N/A";//$th->innerHTML('<td><b>Time:</b> ', '</td>');
+			$this->res['lang'] = "N/A";//$th->innerHTML('<td><b>Language:</b> ', '</td>');
 			$this->db->set(array(
 					'memory' => $this->res['memory'],
 					'long' => $this->res['long'],
