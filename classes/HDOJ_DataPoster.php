@@ -43,7 +43,7 @@
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $post_fields);
 			$this->data = curl_exec($curl);
-			echo file_get_contents($cookie_file);
+			print_r($this->data);
 			
 			//Submit
 			$hint_code = /*"//<ID>".$rid."</ID>\n".*/$code;
