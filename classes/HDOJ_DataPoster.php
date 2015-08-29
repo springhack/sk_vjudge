@@ -32,7 +32,7 @@
 			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
 			$post_fields = "username=".$user."&userpass=".$pass."&login=Sign In";
 			$rid = uniqid();
-			$this->rid = uniqid();
+			$this->rid = $rid;
 			$this->pid = $id;
 			$this->lang = $lang;
 			$this->user = $user;
