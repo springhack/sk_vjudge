@@ -94,6 +94,14 @@
 						'code' => $code
 					))->insert("Record");
 			
+			//Logout
+			$curl = curl_init('http://acm.hdu.edu.cn/userloginex.php?action=logout'); 
+    		curl_setopt($curl, CURLOPT_HEADER, 0);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookie_file);
+			curl_exec($curl);
+			@unlink($this->cookie_file);
+			
 		}
 		
 		public function getData()
@@ -146,14 +154,6 @@
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookie_file);
 			$src = curl_exec($curl);
-			
-			//Logout
-			$curl = curl_init('http://acm.hdu.edu.cn/userloginex.php?action=logout'); 
-    		curl_setopt($curl, CURLOPT_HEADER, 0);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookie_file);
-			curl_exec($curl);
-			@unlink($this->cookie_file);
 			
 			$th = new HTMLParser();
 			$th->loadHTML($src);
