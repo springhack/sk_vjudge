@@ -6,7 +6,7 @@
 **/ ?>
 <?php
 
-	class POJ_DataPoster {
+	class HDOJ_DataPoster {
 		
 		private $data = "";
 		private $db = NULL;
@@ -19,7 +19,7 @@
 		private $pass = "";
 		private $rid = "";
 		
-		public function POJ_DataPoster($user = "skvj01", $pass = "forskvj", $id = "1000", $lang = "0", $code = "")
+		public function HDOJ_DataPoster($user = "skvj01", $pass = "forskvj", $id = "1000", $lang = "0", $code = "")
 		{
 			//MySQL
 			$this->db = new MySQL();
