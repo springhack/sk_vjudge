@@ -142,8 +142,7 @@
 			@unlink($cookie_file);
 			$th = new HTMLParser();
 			$th->loadHTML($src);
-			//return $th->innerHTML('//&lt;ID&gt;', '&lt;/ID&gt;');
-			return 0000000000;
+			return $th->innerHTML('//&lt;ID&gt;', '&lt;/ID&gt;');
 		}
 		
 	}
