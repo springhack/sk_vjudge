@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 17:31:10
-        Filename: manager.php
+        Last modified: 2015-08-30 10:13:21
+        Filename: rank.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -103,30 +103,30 @@
         <center>
         	<?php require_once("header.php"); ?>
         	<h1>Rank List</h1>
-    		<table>
-            	<tr style="color: #FFF; background-color: #0995C4;">
-                	<td>
+    		<table data-type="rank">
+            	<tr data-type="rank" style="color: #FFF; background-color: #0995C4;">
+                	<td data-type="rank">
                     	User Name
                     </td>
                     <?php
                     	for ($i=1;$i<=$db->from("Problem")->select()->num_rows();++$i)
-							echo '<td align="center" width="40">'.$i.'</td>';
+							echo '<td data-type="rank" align="center" width="40">'.$i.'</td>';
 					?>
                 </tr>
             	<?php
                 	for ($i=0;$i<count($list);++$i)
 					{
-						echo '<tr'.(($i%2)?' style="background-color: #CEFDFF;"':'').'><td style=" border-bottom: 1px dotted #CCCCCC;" width="200">'.$list[$i]['user'].'</td>';
+						echo '<tr data-type="rank"'.(($i%2)?' style="background-color: #CEFDFF;"':'').'><td data-type="rank" style=" border-bottom: 1px dotted #CCCCCC;" width="200">'.$list[$i]['user'].'</td>';
 						foreach ($list[$i] as $key => $val)
 							if (!is_string($key))
 							{
 								if ($list[$i][$key]['result'] == 'yes')
-									echo '<td align="center" style="background-color: #0F0; border-bottom: 1px dotted #CCCCCC;">'.secToTime($list[$i][$key]['time']).'<br />';
+									echo '<td data-type="rank" align="center" style="background-color: #0F0; border-bottom: 1px dotted #CCCCCC;">'.secToTime($list[$i][$key]['time']).'<br />';
 								else
 									if ($list[$i][$key]['wrong'] != 0)
-										echo '<td align="center" style="background-color: #F00; border-bottom: 1px dotted #CCCCCC;">';
+										echo '<td data-type="rank" align="center" style="background-color: #F00; border-bottom: 1px dotted #CCCCCC;">';
 									else
-										echo '<td style=" border-bottom: 1px dotted #CCCCCC;" align="center">';
+										echo '<td data-type="rank" style=" border-bottom: 1px dotted #CCCCCC;" align="center">';
 								if ($list[$i][$key]['wrong'] != 0)
 									echo '-'.$list[$i][$key]['wrong'];
 								echo '</td>';

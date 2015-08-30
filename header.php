@@ -1,9 +1,12 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 21:15:21
+        Last modified: 2015-08-30 10:47:41
         Filename: header.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
+			<script language="javascript" src="javascript/jquery-2.1.3.min.js"></script>
+			<script language="javascript" src="javascript/common.js"></script>
+			<link rel="stylesheet" href="css/common.css" type="text/css" />
 			<br />
 			<table border="1">
             	<tr>

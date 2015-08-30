@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 21:14:29
+        Last modified: 2015-08-30 10:44:37
         Filename: index.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -13,7 +13,7 @@
     <body>
     	<center>
         	<?php require_once("header.php"); ?>
-        	<h2>Problems List</h2>
+        	<h1>Problems List</h1>
     	<?php
 			$start = isset($_GET['page'])?(intval($_GET['page'])-1)*100:0;
 			require_once("api.php");

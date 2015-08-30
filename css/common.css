@@ -1,0 +1,41 @@
+/**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-08-30 10:44:59
+        Filename: common.css
+        Description: Created by SpringHack using vim automatically.
+**/
+body, div, img {
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+}
+
+table {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+table[data-type='rank'] {
+	background-color: #eeeeee;
+}
+
+h1 {
+	background-color: #3366AA;
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 10px;
+	display: inline-block;
+}
+
+.menu {
+	background-color: #3366AA;
+	color: #ffffff;
+	border: 0px;
+}
+.menu a {
+	color: #ffffff;
+}
+.menu a:hover {
+	color: #ffffff;
+}
+
