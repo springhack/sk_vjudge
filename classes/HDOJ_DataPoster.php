@@ -76,7 +76,6 @@
 			
 			//Add record
 			$run_id = $this->getRunID();
-			echo $run_id;
 			if ($run_id != "")
 				$ret = $this->db->value(array(
 						'id' => $rid,
@@ -94,6 +93,7 @@
 						'oj_p' => $pass,
 						'code' => $code
 					))->insert("Record");
+			echo $this->db->error();
 			
 			//Logout
 			$curl = curl_init('http://acm.hdu.edu.cn/userloginex.php?action=logout'); 
