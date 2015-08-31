@@ -73,8 +73,7 @@
 			$th = new HTMLParser("http://acm.hdu.edu.cn/status.php?first=".$this->res['rid']."&user=".$this->res['oj_u']);
 			$th->loadHTML($th->innerHTML("<td height=22px>".$this->res['rid']."</td>", "</tr>"));
 			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
-			$this->res['result'] = $th->innerHTML("<td>", "</td>");
-			echo "____\n".$this->res['result']."\n____";
+			$this->res['result'] = $th->innerHTML(">", "</", $th->innerHTML("<font", "font>", $th->innerHTML("<td>", "</td>")));
 			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
 			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
 			$this->res['long'] = $th->innerHTML("<td>", "</td>");
