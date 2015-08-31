@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-31 16:25:12
-        Filename: classes/HDOJ_Record.php
+        Last modified: 2015-08-31 17:31:55
+        Filename: HDOJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
@@ -82,7 +82,7 @@
 			$this->res['lang'] = $th->innerHTML("<td>", "</td>");
 			
 			$this->db->set(array(
-					'memory' => ($this->res['memory'] == "OK")?"N/A":$this->res['memory'],
+					'memory' => $this->res['memory'],
 					'long' => $this->res['long'],
 					'lang' => $this->res['lang'],
 					'result' => $this->res['result']

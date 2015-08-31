@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-31 16:49:40
+        Last modified: 2015-08-31 17:32:00
         Filename: submit.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -15,7 +15,7 @@
 	if (isset($_POST['lang']) && isset($_POST['code']))
 	{
 		$pro->submitCode($_POST['lang'], $_POST['code']);
-		//header("Location: status.php");
+		header("Location: status.php");
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
