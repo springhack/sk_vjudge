@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-30 10:04:17
+        Last modified: 2015-08-31 16:07:04
         Filename: HDOJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -28,6 +28,8 @@
 				&& $this->res['result'] != 'Pending')
 			return $this->res;
 			require_once(dirname(__FILE__)."/HTMLParser.php");
+			
+			/**
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");
 			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
@@ -64,6 +66,17 @@
 			$this->res['memory'] = "N/A";//$th->innerHTML('<td><b>Memory:</b> ', '</td>');
 			$this->res['long'] = "N/A";//$th->innerHTML('<td><b>Time:</b> ', '</td>');
 			$this->res['lang'] = "N/A";//$th->innerHTML('<td><b>Language:</b> ', '</td>');
+			**/
+			
+			$th = new HTMLParser("http://acm.hdu.edu.cn/status.php?first=".$this->res['rid']."&user=".$this->res['oj_u']);
+			$th->loadHTML($th->startString("<td height=22px>".$this->res['rid']."</td><td>"));
+			$th->loadHTML($th->startString("</td><td>"));
+			$this->res['result'] = $th->innerHTML(">", "</font>");
+			$this->res['long'] = $th->innerHTML("</a></td><td>", "</td><td>");
+			$this->res['memory'] = $th->innerHTML("</a></td><td>".$this->res['long']."</td><td>", "</td><td>");
+			$th->loadHTML($th->startString("</a></td><td>".$this->res['long']."</td><td>".$this->res['memory']."</td><td>"));
+			$this->res['lang'] = $th->innerHTML("</td><td>", "</td><td>");
+			
 			$this->db->set(array(
 					'memory' => $this->res['memory'],
 					'long' => $this->res['long'],
