@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-30 10:13:21
+        Last modified: 2015-08-31 17:51:47
         Filename: rank.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -28,7 +28,7 @@
 			$db = new MySQL();
 			$start = $app->setting->get("startTime", time() + 10);
 			if ($start>time())
-				die('<center><h1>Rank not start !</h1></center></body></html>');
+				die('<center><h1><a href="index.php" style="color: #000000;">Rank not start !</a></h1></center></body></html>');
 			$time = $app->setting->get("lastCache", 0);
 			if ((time() - intval($time)) > 30)
 			{
