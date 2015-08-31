@@ -91,9 +91,8 @@
 						'oj' => 'HDOJ',
 						'oj_u' => $user,
 						'oj_p' => $pass,
-						'code' => $code
+						'code' => base64_encode($code)
 					))->insert("Record");
-			echo $this->db->error();
 			
 			//Logout
 			$curl = curl_init('http://acm.hdu.edu.cn/userloginex.php?action=logout'); 
