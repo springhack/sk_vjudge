@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-04 13:23:18
-        Filename: /home/springhack/sk_vjudge/classes/POJ_Record.php
+        Last modified: 2015-08-31 19:03:28
+        Filename: POJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
@@ -56,6 +56,10 @@
 			$th->loadHTML($th->startString('<td><b>Result:</b> '));
 			$th->loadHTML($th->startString('<font '));
 			$this->res['result'] = $th->innerHTML('>', '</font>');
+			if ($this->res['memory'] == "N/A")
+				$this->res['memory'] = "0K";
+			if ($this->res['long'] == "N/A")
+				$this->res['long'] = "0MS";
 			$this->db->set(array(
 					'memory' => $this->res['memory'],
 					'long' => $this->res['long'],
