@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-08-31 16:24:46
+        Filename: Config.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	$Config = array(
 			'DB_HOST' => '10.4.26.93',

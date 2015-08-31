@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-31 16:07:04
-        Filename: HDOJ_Record.php
+        Last modified: 2015-08-31 16:25:12
+        Filename: classes/HDOJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
