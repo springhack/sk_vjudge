@@ -69,13 +69,18 @@
 			**/
 			
 			$th = new HTMLParser("http://acm.hdu.edu.cn/status.php?first=".$this->res['rid']."&user=".$this->res['oj_u']);
-			$th->loadHTML($th->startString("<td height=22px>".$this->res['rid']."</td><td>"));
-			$th->loadHTML($th->startString("</td><td>"));
-			$this->res['result'] = $th->innerHTML(">", "</font>");
-			$this->res['long'] = $th->innerHTML("</a></td><td>", "</td><td>");
-			$this->res['memory'] = $th->innerHTML("</a></td><td>".$this->res['long']."</td><td>", "</td><td>");
-			$th->loadHTML($th->startString("</a></td><td>".$this->res['long']."</td><td>".$this->res['memory']."</td><td>"));
-			$this->res['lang'] = $th->innerHTML("</td><td>", "</td><td>");
+			$th->loadHTML($th->innerHTML("<td height=22px>".$this->res['rid']."</td>", "</tr>"));
+			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
+			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
+			$this->res['result'] = $th->innerHTML("<td>", "</td>");
+			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
+			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
+			$this->res['long'] = $th->innerHTML("<td>", "</td>");
+			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
+			$this->res['memory'] = $th->innerHTML("<td>", "</td>");
+			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
+			$th->loadHTML($th->startString("<td>".$th->innerHTML("<td>", "</td>")."</td>"));
+			$this->res['lang'] = $th->innerHTML("<td>", "</td>");
 			
 			$this->db->set(array(
 					'memory' => $this->res['memory'],
