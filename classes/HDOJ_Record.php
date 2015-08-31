@@ -21,14 +21,12 @@
 		
 		public function getInfo()
 		{
-			/**
 			if ($this->res['result'] != 'N/A'
 				&& $this->res['result'] != 'Running & Judging'
 				&& $this->res['result'] != 'Queuing'
 				&& $this->res['result'] != 'Compiling'
 				&& $this->res['result'] != 'Pending')
 			return $this->res;
-			**/
 			require_once(dirname(__FILE__)."/HTMLParser.php");
 			
 			/**
@@ -84,7 +82,7 @@
 			$this->res['lang'] = $th->innerHTML("<td>", "</td>");
 			
 			$this->db->set(array(
-					'memory' => $this->res['memory'],
+					'memory' => ($this->res['memory'] == "OK")?"N/A":$this->res['memory'],
 					'long' => $this->res['long'],
 					'lang' => $this->res['lang'],
 					'result' => $this->res['result']
