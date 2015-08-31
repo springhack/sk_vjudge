@@ -1,9 +1,9 @@
 <?php
 	$Config = array(
-			'DB_HOST' => '127.0.0.1',
-			'DB_USER' => 'root',
-			'DB_PASS' => 'sksks',
-			'DB_NAME' => 'build_vj',
+			'DB_HOST' => '10.4.26.93',
+			'DB_USER' => 'urJ50OB4xqEuZ',
+			'DB_PASS' => 'pSWTY6QAzQYoD',
+			'DB_NAME' => 'da406f595195d45a9b2d77caa2f8a4b1f',
 			'AUTO_USER' => 'root',
 			'AUTO_PASS' => 'sksks'
 		);
