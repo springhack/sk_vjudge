@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-30 10:44:59
+        Last modified: 2015-09-20 11:14:42
         Filename: common.css
         Description: Created by SpringHack using vim automatically.
 **/
@@ -20,7 +20,7 @@ table[data-type='rank'] {
 }
 
 h1 {
-	background-color: #3366AA;
+	background-color: #33AA66;
 	color: #ffffff;
 	padding: 10px;
 	border-radius: 10px;
@@ -28,7 +28,7 @@ h1 {
 }
 
 .menu {
-	background-color: #3366AA;
+	background-color: #33AA66;
 	color: #ffffff;
 	border: 0px;
 }
