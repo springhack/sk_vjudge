@@ -19,10 +19,11 @@
 		$num = $db->from("Problem")
 					->select()
 					->num_rows();
+		//Just a hack for PHP <= 5.3
 		$db->value(array(
 				'id' => intval($num) + 1,
 				'pid' => $_POST['pid'],
-				'title' => $pro_info['title'],
+				'title' => get_magic_quotes_gpc()?$pro_info['title']:addslashes($pro_info['title']),
 				'oj' => $_POST['oj']
 			))
 			->insert("Problem");
