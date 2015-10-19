@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:13:09
+        Last modified: 2015-10-19 20:14:19
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -109,19 +109,19 @@
                         </form>
                     </td>
                 </tr>
-            </table>
-			<table border="1">
+            </table><br /><br />
+			<table border="1" width="700">
 				<tr>
-					<td>
+					<td align="center" style="padding: 20px;">
 						Title
 					</td>
-					<td>
+					<td align="center" style="padding: 20px;">
 						OJ
 					</td>
-					<td>
+					<td align="center" style="padding: 20px;">
 						ID
 					</td>
-					<td>
+					<td align="center" style="padding: 20px;">
 						Operation
 					</td>
 				</tr>
