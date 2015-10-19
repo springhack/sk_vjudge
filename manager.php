@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:17:00
+        Last modified: 2015-10-19 20:19:17
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -122,6 +122,9 @@
 						ID
 					</td>
 					<td align="center" style="padding: 20px;">
+						Origin ID
+					</td>
+					<td align="center" style="padding: 20px;">
 						Operation
 					</td>
 				</tr>
@@ -131,10 +134,11 @@
 					for ($i=0;$i<count($list);++$i)
 					{
 						echo "<tr>";
-						echo "<td align=center' style='padding: 20px;'>".$list[$i]['title']."</td>";
-						echo "<td align=center' style='padding: 20px;'>".$list[$i]['oj']."</td>";
-						echo "<td align=center' style='padding: 20px;'>".$list[$i]['pid']."</td>";
-						echo "<td align=center' style='padding: 20px;'><a href='manager.php?action=delete&id=".$list[$i]['id']."'>Delete</a></td>";
+						echo "<td align='center' style='padding: 20px;'>".$list[$i]['title']."</td>";
+						echo "<td align='center' style='padding: 20px;'>".$list[$i]['oj']."</td>";
+						echo "<td align='center' style='padding: 20px;'>".$list[$i]['id']."</td>";
+						echo "<td align='center' style='padding: 20px;'>".$list[$i]['pid']."</td>";
+						echo "<td align='center' style='padding: 20px;'><a href='manager.php?action=delete&id=".$list[$i]['id']."'>Delete</a></td>";
 						echo "</tr>";
 					}
 				?>
