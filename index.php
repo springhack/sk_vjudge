@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-30 10:44:37
+        Last modified: 2015-10-19 19:45:31
         Filename: index.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -17,6 +17,9 @@
     	<?php
 			$start = isset($_GET['page'])?(intval($_GET['page'])-1)*100:0;
 			require_once("api.php");
+			$start = $app->setting->get("startTime", time() + 10);
+			if ($start>time())
+				die('<center><h1><a href="index.php" style="color: #000000;">Contest not start !</a></h1></center></body></html>');
 			$db = new MySQL();
 			if ($db->query("SHOW TABLES LIKE 'Problem'")->num_rows() != 1)
 			{

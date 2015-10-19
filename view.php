@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-28 09:13:01
+        Last modified: 2015-10-19 19:48:05
         Filename: view.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -13,6 +13,11 @@
     <body>
     	<center>
         <?php require_once("header.php"); ?>
+		<?php
+			$start = $app->setting->get("startTime", time() + 10);
+			if ($start>time())
+				die('<center><h1><a href="index.php" style="color: #000000;">Contest not start !</a></h1></center></body></html>');
+		?>
         <h1>View Problem</h1>
         <table border="1">
         	<tr>

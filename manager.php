@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-28 09:16:27
+        Last modified: 2015-10-19 19:42:46
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -32,7 +32,8 @@
 	if (isset($_POST['time']))
 	{
 		$app->setting->set("startTime", strtotime($_POST['stime']));
-		$alert = "Start at ".$_POST['stime'];
+		$app->setting->set("endTime", strtotime($_POST['etime']));
+		$alert = "Start at ".$_POST['stime']." and end at ".$_POST['etime'];
 	}
 	if (isset($_POST['clean']))
 	{
@@ -42,6 +43,7 @@
 		$app->setting->set("lastArray", "a:0:{}");
 		$app->setting->set("lastCache", time());
 		$app->setting->set("startTime", time());
+		$app->setting->set("endTime", time());
 		$alert = "我都忘了耶~!";
 	}
 ?>
@@ -86,6 +88,9 @@
                     	<form action="manager.php" method="post"><br /><br />
                             <label>Start Time:&nbsp;</label><input type="text" name="stime" value="<?php
                             	echo date("Y-m-d H:i:s", $app->setting->get("startTime", time()));
+							?>" /><br /><br />
+                            <label>End Time:&nbsp;</label><input type="text" name="etime" value="<?php
+                            	echo date("Y-m-d H:i:s", $app->setting->get("endTime", time()));
 							?>" /><br /><br />
                             <input type="submit" value="Submit" name="time" />
                         </form>

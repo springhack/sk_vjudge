@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-31 17:32:00
+        Last modified: 2015-10-19 19:48:38
         Filename: submit.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -9,6 +9,9 @@
 	if (!$app->user->isLogin())
 		die('<center><a href=\'admin/status.php?action=login&url=../index.php\'>Please login or register first!</a></center>');
 	require_once("classes/Problem.php");
+	$start = $app->setting->get("startTime", time() + 10);
+	if ($start>time())
+		die('<center><h1><a href="index.php" style="color: #000000;">Contest not start !</a></h1></center></body></html>');
 	$db = new MySQL();
 	$info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
 	$pro = new Problem($info['pid'], $info['oj']);
