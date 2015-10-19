@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:19:17
+        Last modified: 2015-10-19 20:22:23
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -25,11 +25,11 @@
 		$pro_info = $pro->getInfo();
 		$db = new MySQL();
 		$num = $db->from("Problem")
-					->select()
-					->num_rows();
+					->select("max(id)")
+					->fetch_one();
 		//Just a hack for PHP <= 5.3
 		$db->value(array(
-				'id' => intval($num) + 1,
+				'id' => intval($num['max(id)']) + 1,
 				'pid' => $_POST['pid'],
 				'title' => get_magic_quotes_gpc()?$pro_info['title']:addslashes($pro_info['title']),
 				'oj' => $_POST['oj']
