@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 19:42:46
+        Last modified: 2015-10-19 19:55:47
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -10,6 +10,14 @@
 		die('<center><a href=\'admin/status.php?action=login&url=../index.php\'>Please login or register first!</a></center>');
 	if ($app->user->getPower() != 0)
 		die('<center><a href=\'admin/status.php?action=login&url=../index.php\'>Please login or register first!</a></center>');
+	if (isset($_GET['action']))
+	{
+		if ($_GET['action'] == "delete")
+		{
+			$db = new MySQL();
+			$db->from("Problem")->where("`id`='".intval($_GET['id'])."'")->delete();
+		}
+	}
 	if (isset($_POST['submit']))
 	{
 		require_once("classes/Problem.php");
@@ -102,6 +110,35 @@
                     </td>
                 </tr>
             </table>
+			<table border="1">
+				<tr>
+					<td>
+						Title
+					</td>
+					<td>
+						OJ
+					</td>
+					<td>
+						ID
+					</td>
+					<td>
+						Operation
+					</td>
+				</tr>
+				<?php
+					$db = new MySQL();
+					$list = $db->from("Problem")->limit(100, $start)->select()->fetch_all();
+					for ($i=0;$i<count($list);++$i)
+					{
+						echo "<tr>";
+						echo "<td>".$list[$i]['title']."</td>";
+						echo "<td>".$list[$i]['oj']."</td>";
+						echo "<td>".$list[$i]['pid']."</td>";
+						echo "<td><a href='manager.php?action=delete&id=".$list[$i]['id']."'>Delete</a></td>";
+						echo "</tr>";
+					}
+				?>
+			</table>
         </center>
     </body>
 </html>

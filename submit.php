@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 19:48:38
+        Last modified: 2015-10-19 19:54:30
         Filename: submit.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -12,6 +12,9 @@
 	$start = $app->setting->get("startTime", time() + 10);
 	if ($start>time())
 		die('<center><h1><a href="index.php" style="color: #000000;">Contest not start !</a></h1></center></body></html>');
+	$end = $app->setting->get("endTime", time() + 10);
+	if ($end<time())
+		die('<center><h1><a href="index.php" style="color: #000000;">Contest have finished !</a></h1></center></body></html>');
 	$db = new MySQL();
 	$info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
 	$pro = new Problem($info['pid'], $info['oj']);
