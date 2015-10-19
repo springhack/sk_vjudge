@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:28:33
+        Last modified: 2015-10-19 20:41:09
         Filename: header.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -25,7 +25,7 @@
 							if ($app->user->isLogin())
 								echo '<a href="admin/status.php?action=logout&url=../index.php">Logout</a>';
 							else
-								echo '<a href="admin/status.php?action=login&url=../index.php">Login & Register</a>';
+								echo $app->user->getUser().':&nbsp;<a href="admin/status.php?action=login&url=../index.php">Login & Register</a>';
 						?>
                     </td>
                 </tr>
