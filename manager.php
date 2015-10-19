@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:14:19
+        Last modified: 2015-10-19 20:17:00
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -128,14 +128,13 @@
 				<?php
 					$db = new MySQL();
 					$list = $db->from("Problem")->limit(10000, 0)->select()->fetch_all();
-					var_dump($list);
 					for ($i=0;$i<count($list);++$i)
 					{
 						echo "<tr>";
-						echo "<td>".$list[$i]['title']."</td>";
-						echo "<td>".$list[$i]['oj']."</td>";
-						echo "<td>".$list[$i]['pid']."</td>";
-						echo "<td><a href='manager.php?action=delete&id=".$list[$i]['id']."'>Delete</a></td>";
+						echo "<td align=center' style='padding: 20px;'>".$list[$i]['title']."</td>";
+						echo "<td align=center' style='padding: 20px;'>".$list[$i]['oj']."</td>";
+						echo "<td align=center' style='padding: 20px;'>".$list[$i]['pid']."</td>";
+						echo "<td align=center' style='padding: 20px;'><a href='manager.php?action=delete&id=".$list[$i]['id']."'>Delete</a></td>";
 						echo "</tr>";
 					}
 				?>
