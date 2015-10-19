@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:53:11
+        Last modified: 2015-10-19 20:57:15
         Filename: header.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -23,7 +23,7 @@
                     	<?php
                         	require_once("api.php");
 							if ($app->user->isLogin())
-								echo '<font style="color: #F00; background-color: #000;">'.$app->user->getUser().'</font> => <a href="admin/status.php?action=logout&url=../index.php">Logout</a>';
+								echo '<font style="padding: 3px; border-radius: 2px; color: #F00; background-color: #000;">'.$app->user->getUser().'</font> => <a href="admin/status.php?action=logout&url=../index.php">Logout</a>';
 							else
 								echo '<a href="admin/status.php?action=login&url=../index.php">Login & Register</a>';
 						?>
