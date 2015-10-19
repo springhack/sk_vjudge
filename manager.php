@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 19:55:47
+        Last modified: 2015-10-19 20:08:16
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -128,6 +128,7 @@
 				<?php
 					$db = new MySQL();
 					$list = $db->from("Problem")->limit(100, $start)->select()->fetch_all();
+					var_dump($list);
 					for ($i=0;$i<count($list);++$i)
 					{
 						echo "<tr>";
