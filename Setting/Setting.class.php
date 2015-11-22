@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-11-17 22:33:24
+        Filename: sk_vjudge/Setting/Setting.class.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	require_once(dirname(__FILE__)."/../App.class.php");
 	App::loadMod("MySQL");

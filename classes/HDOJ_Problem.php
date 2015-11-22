@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-30 10:03:52
+        Last modified: 2015-11-22 19:17:42
         Filename: HDOJ_Problem.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -36,6 +36,8 @@
 			$pro_info['sample_output'] = substr($html->innerHTML('<div class=panel_title align=left>Sample Output</div><div class=panel_content><pre>', '</pre>'), $sub_start);
 			$pro_info['hint'] = "N/A";
 			$pro_info['source'] = substr($html->innerHTML('<div class=panel_title align=left>Author</div> <div class=panel_content>', '</div><div class=panel_bottom>'), $sub_start);
+			foreach ($pro_info as $k => $v)
+				$pro_info[$k] = iconv('GB2312', 'UTF-8', $v);
 			$this->pro_info = $pro_info;
 		}
 		

@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:11:13
-        Filename: Config.php
+        Last modified: 2015-11-18 10:46:30
+        Filename: ../sk_vjudge/Config.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php

@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-11-18 10:45:54
+        Filename: ../sk_vjudge/App.class.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	require_once(dirname(__FILE__)."/Config.php");
 	class App {
