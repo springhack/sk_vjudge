@@ -18,12 +18,12 @@
 			require_once(dirname(__FILE__)."/HTMLParser.php");
 			$html = new HTMLParser("http://acm.hdu.edu.cn/showproblem.php?pid=".$id);
 			$html->optHTMLLink();
+			//Just a hack for OS X
+			$sub_start = 0;
 			$pro_info = array(
 					'title' => substr($html->innerHTML("<h1 style='color:#1A5CC8'>", '</h1>'), $sub_start)
 				);
 			
-			//Just a hack for OS X
-			$sub_start = 0;
 			
 			$pro_info['time'] = substr($html->innerHTML('<span style=\'font-family:Arial;font-size:12px;font-weight:bold;color:green\'>Time Limit: ', ' MS (Java/Others)'), $sub_start);
 			$pro_info['memory'] = substr($html->innerHTML('MS (Java/Others)&nbsp;&nbsp;&nbsp;&nbsp;Memory Limit: ', ' K (Java/Others)<br>'), $sub_start);
