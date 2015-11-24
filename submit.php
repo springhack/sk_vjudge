@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 19:54:30
+        Last modified: 2015-11-24 14:36:17
         Filename: submit.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -20,6 +20,12 @@
 	$pro = new Problem($info['pid'], $info['oj']);
 	if (isset($_POST['lang']) && isset($_POST['code']))
 	{
+		if (isset($_SESSION['lasttime']))
+		{
+			if (time() - intval($_SESSION['lasttime']) < 10)
+				die('<center><a href=\'index.php\'>Please submit 10s later !</a></center>');
+		}
+		$_SESSION['lasttime'] = time();
 		$pro->submitCode($_POST['lang'], $_POST['code']);
 		header("Location: status.php");
 	}
