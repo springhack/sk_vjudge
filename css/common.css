@@ -1,7 +1,7 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-07 14:31:26
-        Filename: css/common.css
+        Last modified: 2015-12-07 19:02:14
+        Filename: common.css
         Description: Created by SpringHack using vim automatically.
 **/
 body, div, img {
@@ -29,7 +29,7 @@ tr {
 .header {
 	background-color: #123;
 	height: 300px;
-	background-image: url(../image/sky.jpg);
+	background-image: url(../image/logo.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
