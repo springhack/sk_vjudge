@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-07 14:31:17
+        Last modified: 2015-12-07 15:22:12
         Filename: header.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -22,7 +22,7 @@
 						?>
             	</div>
 				<?php
-					if (!strstr($_SERVER['REQUEST_URI'], 'index.php'))
+					if (!strstr($_SERVER['SCRIPT_NAME'], 'index.php'))
 					{
 						require_once('linux.php');
 						$sys = sys_linux();
