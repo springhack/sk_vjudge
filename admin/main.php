@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-12-07 13:52:49
+        Filename: admin/main.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	require_once("../App.class.php");
 	App::loadMod("User");

@@ -1,8 +1,14 @@
+/**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-12-07 11:36:35
+        Filename: javascript/common.js
+        Description: Created by SpringHack using vim automatically.
+**/
 $(function () {
-		var list = $("table, tr, td");
+		var list = $("table");
 		list.each(function () {
 				if ($(this).attr("data-type") != "rank")
 					$(this).addClass("menu");
 			});
-//		$(document.body).append("<center><h1 style='color: #000000;'>低调装个X这套系统所有源码均出自SpringHack之手之手访问下面的链接了解更多</h1><br /><h5><a href='http://www.90its.cn/' target='_blank' style='color: #000000;'>Designed by SpringHack in Cello Studio.</a></h5></center>");
+		$(document.body).append("<center><br /><h5><a href='http://www.90its.cn/' target='_blank' style='color: #000000;'>Designed by SpringHack in Cello Studio.</a></h5></center>");
 	});

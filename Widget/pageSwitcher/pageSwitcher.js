@@ -1,3 +1,9 @@
+/**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2015-12-07 14:27:21
+        Filename: pageSwitcher.js
+        Description: Created by SpringHack using vim automatically.
+**/
 // JavaScript Document
 
 var page = {
@@ -54,17 +60,20 @@ document.write('\
 	.page_btn {\
 		border: 1px solid #999;\
 		padding: 3px;\
-		color: #0F0;\
+		color: #FFF;\
 		margin-top: 10px;\
 		text-decoration: none;\
+		border-radius: 3px;\
 	}\
 	.page_input {\
 		position: relative;\
 		top: -2px;\
 		padding: 3.5px;\
-		color: #0F0;\
+		color: #FFF;\
 		border: 1px solid #999;\
 		width: 15px;\
+		border-radius: 3px;\
+		background-color: #AAA;\
 	}\
 </style>\
 <center>\

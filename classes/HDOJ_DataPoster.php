@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-30 10:04:28
+        Last modified: 2015-12-06 19:56:43
         Filename: HDOJ_DataPoster.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -112,18 +112,22 @@
 		private function getRunID()
 		{
 			require_once(dirname(__FILE__)."/HTMLParser.php");
-			$this->html = new HTMLParser("http://acm.hdu.edu.cn/status.php?pid=".$this->pid."&user=".$this->user."&lang=".$this->lang);
-			$this->html->loadHTML($this->html->innerHTML('Output Limit Exceeded</option></select></span>', '<< First Page'));
-			//echo "LLL:".$this->rid."\n\n";
-			while ($this->html->innerHTML('align=center ><td height=22px>', '</td>') != "")
+			//Just a terrible hack............
+			while (true)
 			{
-				$r_id = $this->html->innerHTML('align=center ><td height=22px>', '</td>');
-				//echo "RID:".$r_id."\n";
-				$this->html->loadHTML($this->html->startString('align=center ><td height=22px>'));
-				$t_id = $this->getIdFromSource($r_id);
-				//echo "LID:".$t_id."\n\n";
-				if ($t_id == $this->rid)
-					return $r_id;
+				$this->html = new HTMLParser("http://acm.hdu.edu.cn/status.php?pid=".$this->pid."&user=".$this->user."&lang=".$this->lang);
+				$this->html->loadHTML($this->html->innerHTML('Output Limit Exceeded</option></select></span>', '<< First Page'));
+				//echo "LLL:".$this->rid."\n\n";
+				while ($this->html->innerHTML('align=center ><td height=22px>', '</td>') != "")
+				{
+					$r_id = $this->html->innerHTML('align=center ><td height=22px>', '</td>');
+					//echo "RID:".$r_id."\n";
+					$this->html->loadHTML($this->html->startString('align=center ><td height=22px>'));
+					$t_id = $this->getIdFromSource($r_id);
+					//echo "LID:".$t_id."\n\n";
+					if ($t_id == $this->rid)
+						return $r_id;
+				}
 			}
 			return "";
 		}

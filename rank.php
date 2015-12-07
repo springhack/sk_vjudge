@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 19:50:14
+        Last modified: 2015-12-07 14:31:01
         Filename: rank.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -40,7 +40,8 @@
 					$list[$i] = array(
 							'user' => $u_list[$i],
 							'time' => 0,
-							'deal' => 0
+							'deal' => 0,
+							'do' => 0
 						);
 					for ($j=0;$j<count($p_list);++$j)
 					{
@@ -67,6 +68,8 @@
 								'time' => ($yes == "")?"0":(intval($yes['time']) - $start),
 								'wrong' => $no
 							);
+						if ($yes != "" || $no != 0)
+							$list[$i]['do']++;
 						if ($yes != "")
 						{
 							$list[$i]['time'] += ($list[$i][$j]['time'] + $list[$i][$j]['wrong']*1200);
@@ -74,6 +77,14 @@
 						}
 					}
 				}
+				$t_list = array();
+				for ($t=0;$t<count($list);++$t)
+				{
+					if ($list[$t]['do'] != 0)
+						$t_list[] = $list[$t];
+				}
+				$list = $t_list;
+				unset($t_list);
 				for ($i=0;$i<count($list)-1;++$i)
 					for ($j=$i+1;$j<count($list);++$j)
 					{

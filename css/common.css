@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-10-19 20:28:56
+        Last modified: 2015-12-07 14:31:26
         Filename: css/common.css
         Description: Created by SpringHack using vim automatically.
 **/
@@ -9,33 +9,73 @@ body, div, img {
 	border: 0px;
 	margin: 0px;
 }
-
-table {
-	padding: 10px;
-	border-radius: 10px;
+body {
+	background-color: #252830;
 }
-
 table[data-type='rank'] {
-	background-color: #eeeeee;
+	background-color: #FFF;
+	border-radius: 3px;
+	opacity: 0.7;
 }
-
 h1 {
-	background-color: #33AA66;
-	color: #ffffff;
-	padding: 10px;
-	border-radius: 10px;
 	display: inline-block;
+	color: #FFF;
+	width: 1000px;
+}
+tr {
+	transition: all .5s;
 }
 
+.header {
+	background-color: #123;
+	height: 300px;
+	background-image: url(../image/sky.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.navigator {
+	background-color: #000;
+	color: #FFF;
+	opacity: 0.7;
+}
 .menu {
-	background-color: #33AA66;
-	color: #ffffff;
+	padding: 5px;
+	border: 1px #434857 solid;
+	border-radius: 10px;
+	color: #fff;
+	cursor: pointer;
+}
+.menu tr {
 	border: 0px;
+	padding: 0px;
+	margin: 0px;
 }
-.menu a {
+.menu td {
+	border: 0px;
+	padding: 2px;
+	margin: 0px;
+	border-right:  1px #434857 solid;
+	border-bottom: 1px #434857 solid;
+}
+.menu tr:hover {
+	background-color: #434857;
+}
+a {
 	color: #ffffff;
+	transition: all .5s;
 }
-.menu a:hover {
+a:hover {
 	color: #ffffff;
+	transition: all .5s;
 }
-
+a.btn{
+	display: inline-block;
+	padding: 10px;
+	border: 1px #FFF solid;
+	border-radius: 5px;
+	text-decoration: none;
+}
+a.btn:hover {
+	background-color: #FFF;
+	color: #000;
+}
