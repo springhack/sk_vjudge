@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-07 19:02:14
+        Last modified: 2015-12-07 19:39:54
         Filename: common.css
         Description: Created by SpringHack using vim automatically.
 **/
@@ -8,6 +8,7 @@ body, div, img {
 	padding: 0px;
 	border: 0px;
 	margin: 0px;
+	font-family: "苹方", "Microsoft YaHei", "Comic Sans MS", "幼圆", "黑体", sans-serif;
 }
 body {
 	background-color: #252830;
