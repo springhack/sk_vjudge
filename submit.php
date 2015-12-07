@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-06 19:43:15
-        Filename: ../submit.php
+        Last modified: 2015-12-07 15:08:29
+        Filename: submit.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
@@ -70,7 +70,7 @@
             </tr>
             <tr>
             	<td>
-                        <textarea name="code" rows="26" cols="70" id="code"></textarea>
+                        <textarea name="code" rows="26" cols="110" id="code"></textarea>
                         <input type="hidden" name="rid" id="rid" value="" />
                 </td>
             </tr>
