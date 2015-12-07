@@ -40,7 +40,7 @@
 									height: 3px;
 									background-color: #A00;
 								}
-							</style><br /><br /><br />
+							</style><br /><br />
 							<table style='font-size: 11px;'>
 								</tr>
 									<td>
@@ -79,7 +79,7 @@
 							</table>	
 						<?php
 					} else {
-						?><br /><br /><br />
+						?><br /><br />
 							<a href='http://www.90its.cn/' target='_blank' class='btn'>访问Cello Studio团队</a><br /><br /><br />
 							<a href='http://github.com/springhack' target='_blank' class='btn'>帮助我改善这个项目</a>
 						<?php
