@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-06 19:43:54
+        Last modified: 2015-12-08 10:17:44
         Filename: POJ_DataPoster.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -74,13 +74,13 @@
 				);
 			
 			//Add record
-			$run_id = $this->getRunID();
-			if ($run_id != "")
+			//$run_id = $this->getRunID();
+		//	if ($run_id != "")
 				$ret = $this->db->value(array(
 						'id' => $rid,
 						'oid' => $_GET['id'],
 						'tid' => $id,
-						'rid' => $run_id,
+						'rid' => '__',
 						'user' => $_SESSION['user'],
 						'time' => time(),
 						'memory' => 'N/A',
@@ -92,7 +92,7 @@
 						'oj_p' => $pass,
 						'code' => $code
 					))->insert("Record");
-			
+			$_SESSION['last_id'] = $rid;	
 		}
 		
 		public function getData()

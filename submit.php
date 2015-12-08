@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-07 15:08:29
+        Last modified: 2015-12-08 10:01:25
         Filename: submit.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -27,7 +27,7 @@
 		}
 		$_SESSION['lasttime'] = time();
 		$pro->submitCode($_POST['lang'], $_POST['code']);
-		header("Location: status.php");
+		header("Location: result.php?id=".$_SESSION['last_id']);
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

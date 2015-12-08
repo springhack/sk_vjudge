@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-06 19:56:43
+        Last modified: 2015-12-08 10:18:03
         Filename: HDOJ_DataPoster.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -75,13 +75,13 @@
 				);
 			
 			//Add record
-			$run_id = $this->getRunID();
-			if ($run_id != "")
+			//$run_id = $this->getRunID();
+		//	if ($run_id != "")
 				$ret = $this->db->value(array(
 						'id' => $rid,
 						'oid' => $_GET['id'],
 						'tid' => $id,
-						'rid' => $run_id,
+						'rid' => '__',
 						'user' => $_SESSION['user'],
 						'time' => time(),
 						'memory' => 'N/A',
@@ -101,6 +101,7 @@
 			curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookie_file);
 			curl_exec($curl);
 			@unlink($this->cookie_file);
+			$_SESSION['last_id'] = $rid;	
 			
 		}
 		
@@ -112,46 +113,24 @@
 		private function getRunID()
 		{
 			require_once(dirname(__FILE__)."/HTMLParser.php");
-			//Just a terrible hack............
-			while (true)
+			$this->html = new HTMLParser("http://acm.hdu.edu.cn/status.php?pid=".$this->pid."&user=".$this->user."&lang=".$this->lang);
+			$this->html->loadHTML($this->html->innerHTML('Output Limit Exceeded</option></select></span>', '<< First Page'));
+			//echo "LLL:".$this->rid."\n\n";
+			while ($this->html->innerHTML('align=center ><td height=22px>', '</td>') != "")
 			{
-				$this->html = new HTMLParser("http://acm.hdu.edu.cn/status.php?pid=".$this->pid."&user=".$this->user."&lang=".$this->lang);
-				$this->html->loadHTML($this->html->innerHTML('Output Limit Exceeded</option></select></span>', '<< First Page'));
-				//echo "LLL:".$this->rid."\n\n";
-				while ($this->html->innerHTML('align=center ><td height=22px>', '</td>') != "")
-				{
-					$r_id = $this->html->innerHTML('align=center ><td height=22px>', '</td>');
-					//echo "RID:".$r_id."\n";
-					$this->html->loadHTML($this->html->startString('align=center ><td height=22px>'));
-					$t_id = $this->getIdFromSource($r_id);
-					//echo "LID:".$t_id."\n\n";
-					if ($t_id == $this->rid)
-						return $r_id;
-				}
+				$r_id = $this->html->innerHTML('align=center ><td height=22px>', '</td>');
+				//echo "RID:".$r_id."\n";
+				$this->html->loadHTML($this->html->startString('align=center ><td height=22px>'));
+				$t_id = $this->getIdFromSource($r_id);
+				//echo "LID:".$t_id."\n\n";
+				if ($t_id == $this->rid)
+					return $r_id;
 			}
 			return "";
 		}
 		
 		public function getIdFromSource($RunID)
 		{
-			//Infomation
-			/**
-			$cookie_file = tempnam("./cookie", "cookie");
-			$login_url = "http://acm.hdu.edu.cn/userloginex.php?action=login";
-			$post_fields = "username=".$user."&userpass=".$pass."&login=Sign In";
-			**/
-			
-			//Login
-			/**
-			$curl = curl_init($login_url); 
-    		curl_setopt($curl, CURLOPT_HEADER, 0);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_COOKIEJAR, $cookie_file);
-			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $post_fields);
-			$this->data = curl_exec($curl);
-			**/
-			
 			//Get Source
 			$curl = curl_init("http://acm.hdu.edu.cn/viewcode.php?rid=".$RunID); 
     		curl_setopt($curl, CURLOPT_HEADER, 0);
