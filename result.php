@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-08 10:20:26
+        Last modified: 2015-12-10 14:26:56
         Filename: result.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -8,6 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="3" />
         <title>Status List</title>
     </head>
     <body>
