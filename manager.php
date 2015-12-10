@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-08 10:21:27
+        Last modified: 2015-12-10 21:24:19
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -27,7 +27,6 @@
 		$num = $db->from("Problem")
 					->select("max(cast(id as signed))")
 					->fetch_one();
-		print_r($num);
 		//Just a hack for PHP <= 5.3
 		$db->value(array(
 				'id' => intval($num['max(cast(id as signed))']) + 1,
