@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-08 10:17:44
+        Last modified: 2016-01-19 11:55:30
         Filename: POJ_DataPoster.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -47,12 +47,6 @@
 			
 			//Submit
 			$hint_code = /*"//<ID>".$rid."</ID>\n".*/$code;
-			/**$post_fields = http_build_query(array(
-					'problem_id' => $id,
-					'language' => $lang,
-					'encoded' => 1,
-					'source' => base64_encode($hint_code)
-				));**/
 			$post_fields = 'problem_id='.$id.'&language='.$lang.'&encoded=1&source='.urlencode($hint_code);
 			//print_r(base64_encode($code));
 			$curl = curl_init("http://poj.org/submit"); 
