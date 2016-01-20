@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-19 12:07:06
+        Last modified: 2016-01-21 01:45:16
         Filename: POJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -29,6 +29,7 @@
 			$this->rid = $id;
 			$this->user = $this->res['oj_u'];
 			$this->pass = $this->res['oj_p'];
+			/**
 			if ($this->res['rid'] == '__')
 			{
 				$run_id = $this->getRunID();
@@ -37,9 +38,26 @@
 								'rid' => $run_id
 							))->where('`id`=\''.$id.'\'')->update('Record');
 			}
+			**/
+		}
+
+		public function check()
+		{
+			if ($this->res['result'] != 'N/A'
+					&& $this->res['result'] != 'Running & Judging'
+					&& $this->res['result'] != 'Waiting'
+					&& $this->res['result'] != 'Compiling')
+				return true;
+			else
+				return false;
 		}
 		
 		public function getInfo()
+		{
+			return $this->res;
+		}
+
+		public function _getInfo()
 		{
 			if ($this->res['result'] != 'N/A'
 				&& $this->res['result'] != 'Running & Judging'
