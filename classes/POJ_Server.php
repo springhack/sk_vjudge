@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-21 01:46:10
+        Last modified: 2016-01-21 10:51:51
         Filename: POJ_Server.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -26,10 +26,12 @@
 		
 		public function POJ_DataPoster($user = "skvj01", $pass = "forskvj", $id = "1000", $lang = "0", $code = "", $rid = "")
 		{
-			//MySQL
-			$this->db = new MySQL();
+
 			if (DEBUG)
 				echo "[D] => $user, $pass, $id, $lang, $rid\n";
+
+			//MySQL
+			$this->db = new MySQL();
 
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");
@@ -129,37 +131,62 @@
 		
 	}
 
-	$db = new MySQL();
-
-	function getList()
+	function getList($ll)
 	{
-		global $db;
-		return $db->from('Record')->where('`rid`=\'__\' AND `oj`=\'POJ\'')->select()->fetch_all();
+		$db = new MySQL();
+		$ret = $db->from('Record')->where('`rid`=\'__\' AND `oj`=\'POJ\'')->order('DESC', 'time')->limit($ll, 0)->select()->fetch_all();
+		return $ret;
 	}
 
 	function main()
 	{
-		global $db;
-
-		while (1)
+		while (true)
 		{
-			$list = getList();
-			if (DEBUG)
-				echo "[D] => 5s after...\n";
+			$list = getList(5);
+			$pids = array();
 			for ($i=0;$i<count($list);++$i)
 			{
-				$pd = new POJ_DataPoster($list[$i]['oj_u'], $list[$i]['oj_p'], $list[$i]['tid'], $list[$i]['lang'], $list[$i]['code'], $list[$i]['id']);
-				$rrid = $pd->getRunID();
-				if ($rrid != '')
-					$db->set(array(
-								'rid' => $rrid
-							))->where('`id`=\''.$list[$i]['id'].'\'')->update('Record');
-				$pr = new POJ_Record($list[$i]['id']);
-				$pr->_getInfo();
-				while (!$pr->check())
-					$pr->_getInfo();
+				//Still a bug, when child prosess exit, it will close mysql connection, and parent process get a error...Orz...
+				/**
+				$tmp_pid = $pids[] = pcntl_fork();
+				switch ($tmp_pid)
+				{
+					case -1:
+						fprintf(STDERR, "[E] => Error fork on record %s\n", $list[$i]['id']);
+						exit;
+					break;
+					case 0:
+				**/
+						$fork_db = new MySQL();
+						$pd = new POJ_DataPoster($list[$i]['oj_u'], $list[$i]['oj_p'], $list[$i]['tid'], $list[$i]['lang'], $list[$i]['code'], $list[$i]['id']);
+						$rrid = $pd->getRunID();
+						if (DEBUG)
+							echo '[D] => Run ID is '.$rrid."\n";
+						if ($rrid != '')
+							$fork_db->set(array(
+										'rid' => $rrid
+									))->where('`id`=\''.$list[$i]['id'].'\'')->update('Record');
+						$pr = new POJ_Record($list[$i]['id']);
+						$pr->_getInfo();
+						while (!$pr->check())
+							$pr->_getInfo();
+				/**
+						$fork_db->close();
+						exit;
+					break;
+					default:
+					break;
+				}
+				**/
 			}
+			/**
+			foreach ($pids as $item)
+				if ($item)
+					pcntl_waitpid($item, $status);
+			**/
 			//Sleep 5 seconds
+			if (DEBUG)
+				echo "[D] => 5s after...\n";
 			sleep(5);
 		}
 	}

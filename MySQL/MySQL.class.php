@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2016-01-21 11:05:39
+        Filename: ../MySQL/MySQL.class.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	require_once(dirname(__FILE__)."/../App.class.php");
 	class MySQL {
@@ -27,10 +33,15 @@
 				$name == $Config['DB_NAME'])
 			$this->sql = &$sql;
 				else
-			$this->sql = mysql_connect($host, $user, $pass);
+			$this->sql = mysql_connect($host, $user, $pass, true);
 			if ($this->sql == NULL)
-				$this->sql = mysql_connect($host, $user, $pass);
+				//Just a try !!!!!!!!!!!!!!!!!!!
+				$this->sql = mysql_connect($host, $user, $pass, true);
 			mysql_select_db($name, $this->sql);
+		}
+		public function close()
+		{
+			return mysql_close($this->sql);
 		}
 		public function num_rows()
 		{
@@ -179,6 +190,10 @@
 			$str = "alter table ".$this->table_change." drop column ".$key.";";
 			$this->query_result = mysql_query($str, $this->sql);
 			return $this;
+		}
+		public function ping()
+		{
+			return mysql_ping($this->sql);
 		}
 	}
 ?>
