@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-21 10:51:51
+        Last modified: 2016-01-21 11:27:24
         Filename: POJ_Server.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -140,6 +140,9 @@
 
 	function main()
 	{
+		
+		global $conf;
+
 		while (true)
 		{
 			$list = getList(5);
@@ -158,13 +161,18 @@
 					case 0:
 				**/
 						$fork_db = new MySQL();
-						$pd = new POJ_DataPoster($list[$i]['oj_u'], $list[$i]['oj_p'], $list[$i]['tid'], $list[$i]['lang'], $list[$i]['code'], $list[$i]['id']);
+						$oo_r = rand(0, count($conf['ACCOUNT_LIST']['POJ']) - 1);
+						$oo_u = $conf['ACCOUNT_LIST']['POJ'][$oo_r]['USER'];
+						$oo_p = $conf['ACCOUNT_LIST']['POJ'][$oo_r]['PASS'];
+						$pd = new POJ_DataPoster($oo_u, $oo_p, $list[$i]['tid'], $list[$i]['lang'], $list[$i]['code'], $list[$i]['id']);
 						$rrid = $pd->getRunID();
 						if (DEBUG)
 							echo '[D] => Run ID is '.$rrid."\n";
 						if ($rrid != '')
 							$fork_db->set(array(
-										'rid' => $rrid
+										'rid' => $rrid,
+										'oj_u' => $oo_u,
+										'oj_p' => $oo_p
 									))->where('`id`=\''.$list[$i]['id'].'\'')->update('Record');
 						$pr = new POJ_Record($list[$i]['id']);
 						$pr->_getInfo();
