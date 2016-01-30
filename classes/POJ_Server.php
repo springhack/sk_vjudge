@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-30 13:19:17
+        Last modified: 2016-01-31 03:11:30
         Filename: POJ_Server.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -11,7 +11,7 @@
 	require_once(dirname(__FILE__)."/../App.class.php");
 	require_once(dirname(__FILE__)."/POJ_Record.php");
 
-	class POJ_DataPoster {
+	class POJ_DataPoster_Worker {
 		
 		private $data = "";
 		private $db = NULL;
@@ -24,14 +24,14 @@
 		private $pass = "";
 		private $rid = "";
 		
-		public function POJ_DataPoster($user = "skvj01", $pass = "forskvj", $id = "1000", $lang = "0", $code = "", $rid = "")
+		public function POJ_DataPoster_Worker($user = "skvj01", $pass = "forskvj", $id = "1000", $lang = "0", $code = "", $rid = "")
 		{
 
 			if (DEBUG)
 				echo "[D] => $user, $pass, $id, $lang, $rid\n";
 
 			//MySQL
-			$this->db = new MySQL();
+			$this->db = new dMySQL();
 
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");
@@ -133,8 +133,9 @@
 
 	function getList($ll)
 	{
-		$db = new MySQL();
+		$db = new dMySQL();
 		$ret = $db->from('Record')->where('`rid`=\'__\' AND `oj`=\'POJ\'')->order('DESC', 'time')->limit($ll, 0)->select()->fetch_all();
+		$db->close();
 		return $ret;
 	}
 
@@ -145,12 +146,13 @@
 
 		while (true)
 		{
-			$list = getList(5);
+			//Each loop will create few child process depends on number of account...
+			$list = getList(count($conf['ACCOUNT_LIST']['POJ']));
 			$pids = array();
 			for ($i=0;$i<count($list);++$i)
 			{
 				//Still a bug, when child prosess exit, it will close mysql connection, and parent process get a error...Orz...
-				/**
+				//Maybe bug fixed...
 				$tmp_pid = $pids[] = pcntl_fork();
 				switch ($tmp_pid)
 				{
@@ -159,13 +161,12 @@
 						exit;
 					break;
 					case 0:
-				**/
-						$fork_db = new MySQL();
-						$oo_r = rand(0, count($conf['ACCOUNT_LIST']['POJ']) - 1);
+						$fork_db = new dMySQL();
+						$oo_r = $i;
 						$oo_u = $conf['ACCOUNT_LIST']['POJ'][$oo_r]['USER'];
 						$oo_p = $conf['ACCOUNT_LIST']['POJ'][$oo_r]['PASS'];
-						$pd = new POJ_DataPoster($oo_u, $oo_p, $list[$i]['tid'], $list[$i]['lang'], $list[$i]['code'], $list[$i]['id']);
-						$rrid = $pd->getRunID();
+						$pdw = new POJ_DataPoster_Worker($oo_u, $oo_p, $list[$i]['tid'], $list[$i]['lang'], $list[$i]['code'], $list[$i]['id']);
+						$rrid = $pdw->getRunID();
 						if (DEBUG)
 							echo '[D] => Run ID is '.$rrid."\n";
 						if ($rrid != '')
@@ -181,23 +182,20 @@
 										'oj_p' => $oo_p
 									))->where('`id`=\''.$list[$i]['id'].'\'')->update('Record');
 						$pr = new POJ_Record($list[$i]['id']);
+						$pr->initMySQL();
 						$pr->_getInfo();
 						while (!$pr->check())
 							$pr->_getInfo();
-				/**
 						$fork_db->close();
 						exit;
 					break;
 					default:
 					break;
 				}
-				**/
 			}
-			/**
 			foreach ($pids as $item)
 				if ($item)
 					pcntl_waitpid($item, $status);
-			**/
 			//Sleep 5 seconds
 			if (DEBUG)
 				echo "[D] => 5s after...\n";

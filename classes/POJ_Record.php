@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-30 13:18:56
+        Last modified: 2016-01-31 03:03:47
         Filename: POJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -20,27 +20,23 @@
 		private $rid;
 		//Patch end
 		
+		//Common construct
 		public function POJ_Record($id)
 		{
 			$this->id = $id;
-			$this->db = new MySQL();
-			$this->res = $this->db->from("Record")->where("`id` = '".$id."'")->select()->fetch_one();
-			//Patch
 			$this->rid = $id;
-			$this->user = $this->res['oj_u'];
-			$this->pass = $this->res['oj_p'];
-			/**
-			if ($this->res['rid'] == '__')
-			{
-				$run_id = $this->getRunID();
-				if ($run_id != "")
-					$this->db->set(array(
-								'rid' => $run_id
-							))->where('`id`=\''.$id.'\'')->update('Record');
-			}
-			**/
 		}
 
+		//Only for cli
+		public function initMySQL()
+		{
+			$this->db = new dMySQL();
+			$this->res = $this->db->from("Record")->where("`id` = '".$this->id."'")->select()->fetch_one();
+			$this->user = $this->res['oj_u'];
+			$this->pass = $this->res['oj_p'];
+		}
+
+		//Only for cli
 		public function check()
 		{
 			if ($this->res['result'] != 'N/A'
@@ -52,11 +48,15 @@
 				return false;
 		}
 		
+		//For view
 		public function getInfo()
 		{
+			$this->db = new MySQL();
+			$this->res = $this->db->from("Record")->where("`id` = '".$this->id."'")->select()->fetch_one();
 			return $this->res;
 		}
 
+		//Only for cli
 		public function _getInfo()
 		{
 			if ($this->res['result'] != 'N/A'
