@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-21 10:07:46
+        Last modified: 2016-01-30 12:53:41
         Filename: POJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -67,6 +67,16 @@
 			//Patch
 			if ($this->res['rid'] == '__')
 				return $this->res;
+			if ($this->res['rid'] == 'NONE')
+			{
+				$this->db->set(array(
+						'memory' => '0K',
+						'long' => '0MS',
+						'lang' => 'Unknown',
+						'result' => 'Submit Errpr'
+					))->where("`id` = '".$this->id."'")->update("Record");
+				$this->res = $this->db->from("Record")->where("`id` = '".$id."'")->select()->fetch_one();
+			}
 			require_once(dirname(__FILE__)."/HTMLParser.php");
 			//Infomation
 			$cookie_file = tempnam("./cookie", "cookie");

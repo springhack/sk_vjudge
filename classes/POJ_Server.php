@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-21 11:27:24
+        Last modified: 2016-01-30 12:52:25
         Filename: POJ_Server.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -171,6 +171,12 @@
 						if ($rrid != '')
 							$fork_db->set(array(
 										'rid' => $rrid,
+										'oj_u' => $oo_u,
+										'oj_p' => $oo_p
+									))->where('`id`=\''.$list[$i]['id'].'\'')->update('Record');
+						else
+							$fork_db->set(array(
+										'rid' => 'NONE',
 										'oj_u' => $oo_u,
 										'oj_p' => $oo_p
 									))->where('`id`=\''.$list[$i]['id'].'\'')->update('Record');
