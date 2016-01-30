@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-30 12:53:41
+        Last modified: 2016-01-30 13:09:52
         Filename: POJ_Record.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -75,7 +75,8 @@
 						'lang' => 'Unknown',
 						'result' => 'Submit Errpr'
 					))->where("`id` = '".$this->id."'")->update("Record");
-				$this->res = $this->db->from("Record")->where("`id` = '".$id."'")->select()->fetch_one();
+				$this->res = $this->db->from("Record")->where("`id` = '".$this->id."'")->select()->fetch_one();
+				return $this->res;
 			}
 			require_once(dirname(__FILE__)."/HTMLParser.php");
 			//Infomation
