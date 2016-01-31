@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2016-01-31 09:26:05
+        Filename: status.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	if (isset($_GET['url']))
 		$url = $_GET['url'];
@@ -23,6 +29,8 @@
 			} else {
 				if (isset($_POST['submit']))
 				{
+					if (!$user->user_pass__check($_POST['user'], $_POST['pass']))
+						$alert = "注册失败，账号密码不符合要求";
 					if ($user->userRegister($_POST['user'], $_POST['pass'], ""))
 					{
 						$alert = "注册成功,3秒后返回!";
