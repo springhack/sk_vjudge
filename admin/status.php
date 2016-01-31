@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-31 09:26:05
+        Last modified: 2016-01-31 09:34:52
         Filename: status.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -29,7 +29,7 @@
 			} else {
 				if (isset($_POST['submit']))
 				{
-					if (!$user->user_pass__check($_POST['user'], $_POST['pass']))
+					if (!$user->user_pass_check($_POST['user'], $_POST['pass']))
 						$alert = "注册失败，账号密码不符合要求";
 					if ($user->userRegister($_POST['user'], $_POST['pass'], ""))
 					{
