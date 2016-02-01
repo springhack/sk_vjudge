@@ -1,3 +1,9 @@
+<?php /**
+        Author: SpringHack - springhack@live.cn
+        Last modified: 2016-02-01 12:32:57
+        Filename: admin/eassy.php
+        Description: Created by SpringHack using vim automatically.
+**/ ?>
 <?php
 	require_once("../App.class.php");
 	App::loadMod("User");

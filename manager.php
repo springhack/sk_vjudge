@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-10 21:24:19
+        Last modified: 2016-02-01 12:42:08
         Filename: manager.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -60,6 +60,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>评测管理</title>
+        <link rel="stylesheet" href="admin/css/frame.css" type="text/css" />
     </head>
     <body>
 		<center>
@@ -68,7 +69,7 @@
             	if (isset($alert))
 					echo "<h1>".$alert."</h1><br />";
 			?>
-        	<table border="1">
+			<table border="0" cellpadding="0" cellspacing="0">
             	<tr>
                 	<td align="center" style="padding: 20px;">
                     	<h2>Add Problem</h2>
@@ -110,7 +111,7 @@
                     </td>
                 </tr>
             </table><br /><br />
-			<table border="1" width="700">
+			<table border="0" cellpadding="0" cellspacing="0">
 				<tr>
 					<td align="center" style="padding: 20px;">
 						Title
