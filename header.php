@@ -1,12 +1,12 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-07 15:22:12
+        Last modified: 2016-02-01 11:56:21
         Filename: header.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 			<script language="javascript" src="javascript/jquery-2.1.3.min.js"></script>
-			<script language="javascript" src="javascript/common.js"></script>
-			<link rel="stylesheet" href="css/common.css" type="text/css" />
+			<script language="javascript" src="resource.php?type=js"></script>
+			<link rel="stylesheet" href="resource.php?type=css" type="text/css" />
 			<div class='header'>
 				<div class='navigator'>
 						<h2 style='display: inline-block;'>Virtual Judge</h2><font style='display: inline-block; width: 220px;'>&nbsp;</font>

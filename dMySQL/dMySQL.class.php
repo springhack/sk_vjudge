@@ -1,12 +1,12 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-31 02:39:08
-        Filename: ../MySQL/MySQL.class.php
+        Last modified: 2016-01-31 02:39:02
+        Filename: ../dMySQL/dMySQL.class.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
 	require_once(dirname(__FILE__)."/../App.class.php");
-	class MySQL {
+	class dMySQL {
 		private $sql = NULL;
 		private $insert_command = array();
 		private $update_command = array();
@@ -26,17 +26,7 @@
 			$user = $user?$user:$Config['DB_USER'];
 			$pass = $pass?$pass:$Config['DB_PASS'];
 			$name = $name?$name:$Config['DB_NAME'];
-			if (
-				$host == $Config['DB_HOST'] &&
-				$user == $Config['DB_USER'] &&
-				$pass == $Config['DB_PASS'] &&
-				$name == $Config['DB_NAME'])
-			$this->sql = &$sql;
-				else
 			$this->sql = mysql_connect($host, $user, $pass, true);
-			if ($this->sql == NULL)
-				//Just a try !!!!!!!!!!!!!!!!!!!
-				$this->sql = mysql_connect($host, $user, $pass, true);
 			mysql_select_db($name, $this->sql);
 		}
 		public function close()
