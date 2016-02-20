@@ -4,16 +4,18 @@
         Filename: index.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php require_once("head.html"); ?>
         <title>Problem List</title>
     </head>
     <body>
-    	<center>
-        	<?php require_once("header.php"); ?>
-        	<h1>Problems List</h1>
+        <?php require_once("navbar.php"); ?>
+        <div class="container">
+            <h1>Problems List</h1>
+        </div>
+        <div class="container">
     	<?php
 			$sstart = isset($_GET['page'])?(intval($_GET['page'])-1)*100:0;
 			require_once("api.php");
@@ -31,13 +33,13 @@
 					))->create("Problem");
 			}
 			$list = $db->from("Problem")->limit(100, $sstart)->select()->fetch_all();
-			echo "<table border='1'><tr><td width='100'>Problem ID</td><td width='500'>Problem Title</td></tr>";
+			echo '<table class="table table-bordered table-hover"><thead><tr><td>Problem ID</td><td>Problem Title</td></tr></thead><tbody>';
 			for ($i=0;$i<count($list);++$i)
-				echo "<tr><td width='100'>".(intval($i)+1)."</td><td width='500'><a href='view.php?id=".$list[$i]['id']."'>".$list[$i]['title']."</a></td></tr>";
-			echo "</table>";
+				echo "<tr><td>".(intval($i)+1)."</td><td><a href='view.php?id=".$list[$i]['id']."'>".$list[$i]['title']."</a></td></tr>";
+			echo "</tbody></table>";
 		?><br /><br />
 		<script language="javascript" src="Widget/pageSwitcher/pageSwitcher.js"></script>
 		<br /><br />
-        </center>
+        </div>
     </body>
 </html>
