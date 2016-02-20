@@ -19,35 +19,72 @@
         <title><?php echo $_GET['id'].' '.$pro_info['title']?></title>
     </head>
     <body>
-    	<center>
         <?php require_once("navbar.php"); ?>
 		<?php
 			$start = $app->setting->get("startTime", time() + 10);
 			if ($start>time())
 				die('<center><h1><a href="index.php" style="color: #000000;">Contest not start !</a></h1></center></body></html>');
 		?>
-        <h1><?php echo $_GET['id'].' '.$pro_info['title']?></h1>
-        <table border="1">
-        	<tr>
-            	<td width="200">
-            		<h2>Submit Code</h2>
-            	</td>
-                <td width="600">
-                	<a href="submit.php?id=<?php echo $_GET['id']; ?>">Submit</a>
-                </td>
-            </tr>
-            <?php
-                foreach ($pro_info as $key => $val)
-                {
-                    echo "<tr><td width='200'><h2>".$key."</h2></td><td width='800'>";
-                    if (strstr($key, "sample_"))
-                        echo "<pre>".$val."</pre></td></tr>";
-                    else
-                        echo $val."</td></tr>";
-                }
-            ?>
-            </table>
-            <br /><br />
-        </center>
+        <div class="page-header">
+            <div class="container">
+                <center><h3><?php echo $_GET['id'].' '.$pro_info['title']?></h3></center>
+            </div>
+            <div class="container">
+                <center>
+                    <div class="col-lg-6">
+                        <table>
+                            <tr>
+                                <td><strong>Time Limit: </strong></td>
+                                <td><?php echo $pro_info['time']."ms"; ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Submissions: </strong></td>
+                                <td><?php echo $pro_info['submissions']; ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table>
+                            <tr>
+                                <td><strong>Memory Limit: </strong></td>
+                                <td><?php echo $pro_info['memory']."kb"; ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accepted: </strong></td>
+                                <td><?php echo $pro_info['accepted']; ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="container">
+                <p class="lead">Description</p>
+                <div class="well"><?php echo $pro_info['description']; ?></div>
+                <p class="lead">Input</p>
+                <div class="well"><?php echo $pro_info['input']; ?></div>
+                <p class="lead">Output</p>
+                <div class="well"><?php echo $pro_info['output']; ?></div>
+                <p class="lead">Sample Input</p>
+                <pre><?php echo $pro_info['sample_input'] ?></pre>
+                <p class="lead">Sample Output</p>
+                <pre><?php echo $pro_info['sample_output'] ?></pre>
+                <?php if (array_key_exists('hint', $pro_info)) {?>
+                <p class="lead">Hint</p>
+                <div class="well"><?php echo $pro_info['hint']; ?></div>
+                <?php }?>
+                <p class="lead">Source</p>
+                <div class="well"><?php echo $pro_info['source']; ?></div>
+            </div>
+            <div class="footer">
+                <div class="container">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-default" href="submit.php?id=<?php echo $_GET['id']; ?>">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
