@@ -70,10 +70,10 @@
                 <pre><?php echo $pro_info['sample_input'] ?></pre>
                 <p class="lead">Sample Output</p>
                 <pre><?php echo $pro_info['sample_output'] ?></pre>
-                <?php if (array_key_exists('hint', $pro_info)) {?>
-                <p class="lead">Hint</p>
-                <div class="well"><?php echo $pro_info['hint']; ?></div>
-                <?php }?>
+                <?php if (!empty($pro_info['hint'])) {
+                    echo '<p class="lead">Hint</p>';
+                    echo '<div class="well">'.$pro_info['hint'].'</div>';
+                }?>
                 <p class="lead">Source</p>
                 <div class="well"><?php echo $pro_info['source']; ?></div>
             </div>
