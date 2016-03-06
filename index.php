@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-03-06 19:40:48
+        Last modified: 2016-03-06 19:42:26
         Filename: index.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -43,4 +43,3 @@
         </div>
     </body>
 </html>
->>>>>>> e935b4e6679aa42c446504dec7c2dbcaf2fd7665
