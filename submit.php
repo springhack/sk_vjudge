@@ -33,10 +33,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php require_once("head.html"); ?>
         <title>Submit Code</title>
     </head>
     <body>
+        <?php require_once("navbar.php"); ?>
     	<script language="javascript">
 			<?php echo $pro->getEncodeScript(); ?>
 		</script>
@@ -53,7 +54,6 @@
 			});
 		</script>
         <center>
-        <?php require_once("header.php"); ?>
         <h1>Submit Code</h1>
         <form action="submit.php?id=<?php echo $_GET['id']; ?>" method="post" onsubmit="return encodeSource()">
         <table border="1">
