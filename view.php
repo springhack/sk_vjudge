@@ -4,48 +4,87 @@
         Filename: view.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+    require_once("api.php");
+    require_once("classes/Problem.php");
+    $db = new MySqL();
+    $info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
+    $pro = new Problem($info['pid'], $info['oj']);
+    $pro_info = $pro->getInfo();
+?>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>View Problem</title>
+        <?php require_once("head.html"); ?>
+        <title><?php echo $_GET['id'].' '.$pro_info['title']?></title>
     </head>
     <body>
-    	<center>
-        <?php require_once("header.php"); ?>
+        <?php require_once("navbar.php"); ?>
 		<?php
 			$start = $app->setting->get("startTime", time() + 10);
 			if ($start>time())
 				die('<center><h1><a href="index.php" style="color: #000000;">Contest not start !</a></h1></center></body></html>');
 		?>
-        <h1>View Problem</h1>
-        <table border="1">
-        	<tr>
-            	<td width="200">
-            		<h2>Submit Code</h2>
-            	</td>
-                <td width="600">
-                	<a href="submit.php?id=<?php echo $_GET['id']; ?>">Submit</a>
-                </td>
-            </tr>
-            <?php
-                require_once("api.php");
-                require_once("classes/Problem.php");
-                $db = new MySQL();
-                $info = $db->from("Problem")->where("`id` = '".$_GET['id']."'")->select()->fetch_one();
-                $pro = new Problem($info['pid'], $info['oj']);
-                $pro_info = $pro->getInfo();
-                foreach ($pro_info as $key => $val)
-                {
-                    echo "<tr><td width='200'><h2>".$key."</h2></td><td width='800'>";
-                    if (strstr($key, "sample_"))
-                        echo "<pre>".$val."</pre></td></tr>";
-                    else
-                        echo $val."</td></tr>";
-                }
-            ?>
-            </table>
-            <br /><br />
-        </center>
+        <div class="page-header">
+            <div class="container">
+                <center><h3><?php echo $_GET['id'].' '.$pro_info['title']?></h3></center>
+            </div>
+            <div class="container">
+                <center>
+                    <div class="col-lg-6">
+                        <table>
+                            <tr>
+                                <td><strong>Time Limit: </strong></td>
+                                <td><?php echo $pro_info['time']."ms"; ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Submissions: </strong></td>
+                                <td><?php echo $pro_info['submissions']; ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table>
+                            <tr>
+                                <td><strong>Memory Limit: </strong></td>
+                                <td><?php echo $pro_info['memory']."kb"; ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accepted: </strong></td>
+                                <td><?php echo $pro_info['accepted']; ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="container">
+                <p class="lead">Description</p>
+                <div class="well"><?php echo $pro_info['description']; ?></div>
+                <p class="lead">Input</p>
+                <div class="well"><?php echo $pro_info['input']; ?></div>
+                <p class="lead">Output</p>
+                <div class="well"><?php echo $pro_info['output']; ?></div>
+                <p class="lead">Sample Input</p>
+                <pre><?php echo $pro_info['sample_input'] ?></pre>
+                <p class="lead">Sample Output</p>
+                <pre><?php echo $pro_info['sample_output'] ?></pre>
+                <?php if (!empty($pro_info['hint'])) {
+                    echo '<p class="lead">Hint</p>';
+                    echo '<div class="well">'.$pro_info['hint'].'</div>';
+                }?>
+                <p class="lead">Source</p>
+                <div class="well"><?php echo $pro_info['source']; ?></div>
+            </div>
+            <div class="footer">
+                <div class="container">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-default" href="submit.php?id=<?php echo $_GET['id']; ?>">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
