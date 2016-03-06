@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-11-18 10:45:54
-        Filename: ../sk_vjudge/App.class.php
+        Last modified: 2016-01-31 02:35:34
+        Filename: ../App.class.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
@@ -17,7 +17,8 @@
 			global $Config;
 			date_default_timezone_set('Asia/Shanghai');
 			if ($sql == NULL)
-				$sql = mysql_connect($Config['DB_HOST'], $Config['DB_USER'], $Config['DB_PASS']);
+				//Just a try !!!!!!!!!!!!!!!!!!!
+				$sql = mysql_connect($Config['DB_HOST'], $Config['DB_USER'], $Config['DB_PASS'], true);
 			if (!$sql)
 				die("Error connect database!");
 			mysql_select_db($Config['DB_NAME'], $sql);

@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-12-07 14:31:01
+        Last modified: 2016-01-30 12:58:16
         Filename: rank.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -52,13 +52,13 @@
 									->fetch_one();
 						if ($yes == "")
 							$no = $db->from("Record")
-									->where("`oid`='".$p_list[$j]['id']."' AND `user`='".$u_list[$i]."' AND `result`<>'Accepted'")
+									->where("`oid`='".$p_list[$j]['id']."' AND `user`='".$u_list[$i]."' AND `result`<>'Accepted' AND `result`<>'Submit Error'")
 									->order("ASC", "time")
 									->select()
 									->num_rows();
 						else
 							$no = $db->from("Record")
-									->where("`oid`='".$p_list[$j]['id']."' AND `user`='".$u_list[$i]."' AND `result`<>'Accepted' AND `time`<".$yes['time'])
+									->where("`oid`='".$p_list[$j]['id']."' AND `user`='".$u_list[$i]."' AND `result`<>'Accepted' AND `reslut`<>'Submit Error' AND `time`<".$yes['time'])
 									->order("ASC", "time")
 									->select()
 									->num_rows();

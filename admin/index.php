@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-08-28 09:16:09
-        Filename: index.php
+        Last modified: 2016-02-01 12:20:08
+        Filename: admin/index.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
@@ -49,8 +49,11 @@
             </div>
             <div id="right">
                 <div id="left">
-                	<div class="item_parent selected" onclick="menu.open('../manager.php')">
+                	<div class="item_parent" onclick="menu.open('../manager.php')">
                         <img src="img/dash.svg" />评测管理
+                    </div>
+                	<div class="item_parent" onclick="menu.open('../theme.php')">
+                        <img src="img/dash.svg" />主题管理
                     </div>
                 	<div class="item_parent selected" onclick="menu.open('main.php')">
                         <img src="img/dash.svg" />监控面板

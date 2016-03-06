@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2015-11-24 14:36:01
-        Filename: User/User.class.php
+        Last modified: 2016-01-31 10:07:09
+        Filename: User.class.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
