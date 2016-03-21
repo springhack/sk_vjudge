@@ -1,6 +1,6 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-02-01 11:56:21
+        Last modified: 2016-03-21 11:10:00
         Filename: header.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
@@ -18,7 +18,7 @@
 							if ($app->user->isLogin())
 								echo '<font style="display: inline-block; padding: 5px; border-radius: 5px;">'.$app->user->getUser().'</font> => <a href="admin/status.php?action=logout&url=../index.php">登出</a>';
 							else
-								echo '<a href="admin/status.php?action=login&url=../index.php">登陆</a>';
+								echo '<a href="admin/status.php?action=login&url=../index.php">登录</a>';
 						?>
             	</div>
 				<?php
