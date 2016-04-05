@@ -1,7 +1,7 @@
 <?php /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2016-01-31 02:39:02
-        Filename: ../dMySQL/dMySQL.class.php
+        Last modified: 2016-03-31 17:09:44
+        Filename: dMySQL.class.php
         Description: Created by SpringHack using vim automatically.
 **/ ?>
 <?php
